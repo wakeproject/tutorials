@@ -1,7 +1,7 @@
 define [
   '/underscore.js',
   '/domReady.js',
-  'cs!/wahlque/util/url.coffee'
+  'cs!/wahlque/util/url'
 ], (_, domReady, url) ->
   domReady( ->
       ps = url.params()
