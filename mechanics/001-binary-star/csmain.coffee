@@ -6,7 +6,7 @@ define [
   'bean',
   'cs!/wahlque/util/url'
 ], (_, domReady, qwery, bonzo, bean, url) ->
-  $ = (selector) <- bonzo(qwery(selector))
+  $ = (selector) -> bonzo(qwery(selector))
 
   domReady( ->
       ps = url.params()
