@@ -6,7 +6,7 @@ define [
   domReady( ->
       ps = url.params()
       ctx =
-          keys: _.keys(ps) ? []
+          keys: _.keys(ps) or []
           vals: ps
       list = _.template(
         "<ul><% _.each(keys, function(key) { %> <li><%= vals[key] %></li> <% }); %></ul>",
