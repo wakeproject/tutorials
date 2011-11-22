@@ -1,3 +1,9 @@
+###
+  csmain.coffee
+
+  link for this section:
+  http://playground.wahlque.org/tutorials/mechanics/001-binary-star
+###
 define [
   'underscore',
   'domReady',

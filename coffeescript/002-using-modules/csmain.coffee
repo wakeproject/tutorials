@@ -1,3 +1,9 @@
+###
+  csmain.coffee
+
+  link for this section:
+  http://playground.wahlque.org/tutorials/coffeescript/002-using-modules
+###
 define [
   'underscore',
   'domReady',
