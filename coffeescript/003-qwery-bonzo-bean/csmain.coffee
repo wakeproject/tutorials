@@ -15,7 +15,10 @@ define [
   $ = (selector) -> bonzo(qwery(selector))
 
   domReady( ->
-      ps = url.params() or {a: 5, b: 10}
+      ps = url.params()
+      ps['a'] = 5 if not ps['a']
+      ps['b'] = 10 if not ps['b']
+
       ctx =
           keys: _.keys(ps)
           vals: ps
