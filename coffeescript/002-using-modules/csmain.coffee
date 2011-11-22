@@ -9,7 +9,7 @@ define [
           keys: _.keys(ps) or []
           vals: ps
       list = _.template(
-        "<ul><% _.each(keys, function(key) { %> <li><%= vals[key] %></li> <% }); %></ul>",
+        "<ul><% _.each(keys, function(key) { %> <li><%= key %>: <%= vals[key] %></li> <% }); %></ul>",
         ctx
       )
       document.getElementById("params").innerHTML = list
