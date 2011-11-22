@@ -15,9 +15,9 @@ define [
   $ = (selector) -> bonzo(qwery(selector))
 
   domReady( ->
-      ps = url.params()
+      ps = url.params() or {a: 5, b: 10}
       ctx =
-          keys: _.keys(ps) or []
+          keys: _.keys(ps)
           vals: ps
       list = _.template(
         "<ul>
