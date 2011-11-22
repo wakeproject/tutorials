@@ -1,6 +1,6 @@
 define [
-  '/underscore.js',
-  '/domReady.js',
+  'underscore',
+  'domReady',
   'cs!/wahlque/util/url'
 ], (_, domReady, url) ->
   domReady( ->

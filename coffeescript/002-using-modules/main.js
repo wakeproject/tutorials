@@ -1,5 +1,7 @@
 require({
   paths: {
-    cs: '/cs'
+    cs: '/cs',
+    underscore: '/underscore',
+    domReady: '/domReady'
   }
 }, ['cs!csmain']);
