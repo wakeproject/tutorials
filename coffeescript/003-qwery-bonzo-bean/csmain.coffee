@@ -20,7 +20,12 @@ define [
           keys: _.keys(ps) or []
           vals: ps
       list = _.template(
-        "<ul><% _.each(keys, function(key) { %> <li><%= key %>: <%= vals[key] %></li> <% }); %></ul>",
+        "<ul>
+           <form action='/tutorials/coffeescript/003-qwery-bonzo-bean/' method='get'>
+           <% _.each(keys, function(key) { %> <li><%= key %>: <input type='text' name='<%= key %>' value='<%= vals[key] %>'></li> <% }); %>
+           <input type='submit' value='Submit' />
+           </form>
+         </ul>",
         ctx
       )
       $("#params").html(list)
