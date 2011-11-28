@@ -4,7 +4,7 @@ var worker = require({
     paths: {
         cs: '/cs',
         underscore: '/underscore',
-        baseUrl: './'
+        baseUrl: '/tutorials/coffeescript/004-webworkers/'
     }
 }, ['cs!multiplication']);
 
