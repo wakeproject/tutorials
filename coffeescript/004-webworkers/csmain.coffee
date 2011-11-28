@@ -39,5 +39,7 @@ define [
         worker.onmessage = (event) ->
             data = event.data;
             $("#result").html(data);
+        worker.onerror = (args...)->
+            console.error("WORKER ERROR", args);
         worker.postMessage(ps)
     )
