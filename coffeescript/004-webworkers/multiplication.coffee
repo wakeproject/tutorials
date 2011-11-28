@@ -9,5 +9,5 @@ define [
 ], (_, multi) ->
 
     multi.onmessage = (e) ->
-        result = _.reduce(e.data, (memo, elem) -> memo * elem, 1)
+        result = _.reduce(_.values(e.data), (memo, elem) -> memo * elem, 1)
         postMessage(result)
