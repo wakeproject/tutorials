@@ -24,7 +24,7 @@ define [
           vals: ps
         list = _.template(
             "<ul>
-               <form action='/tutorials/coffeescript/003-qwery-bonzo-bean/' method='get'>
+               <form action='/tutorials/coffeescript/004-webworkers/' method='get'>
                <% _.each(keys, function(key) { %>
                  <li><%= key %>: <input type='text' name='<%= key %>' value='<%= vals[key] %>'></li>
                <% }); %>
