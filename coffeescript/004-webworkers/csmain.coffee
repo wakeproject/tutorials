@@ -35,7 +35,7 @@ define [
         )
         $("#params").html(list)
 
-        worker = new Worker './worker.js'
+        worker = new Worker 'worker.js'
         worker.onmessage = (event) ->
             data = event.data;
             $("#result").html(data);
