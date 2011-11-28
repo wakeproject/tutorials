@@ -36,11 +36,12 @@ define [
         $("#params").html(list)
 
         worker = new Worker 'worker.js'
-        worker.onmessage = (event) ->
-            data = event.data;
-            $('#result').html(data);
+        worker.onmessage = (e) ->
+            data = 'result: ' + e.data
+            $('#result').html(data)
+            false
         console.info('start of calling from page');
         worker.postMessage(ps)
         console.info('end of calling from page');
-        true
+        false
     )
