@@ -2,7 +2,7 @@
   csmain.coffee
 
   link for this section:
-  http://playground.wahlque.org/tutorials/coffeescript/003-qwery-bonzo-bean
+  http://playground.wahlque.org/tutorials/coffeescript/003-qwery-bonzo-bean/
 ###
 define [
   'underscore',
