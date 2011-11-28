@@ -39,8 +39,6 @@ define [
         worker.onmessage = (event) ->
             data = event.data;
             $('#result').html(data);
-        worker.onerror = (args...)->
-            console.error('WORKER ERROR', args);
         console.info('start of calling from page');
         worker.postMessage(ps)
         console.info('end of calling from page');
