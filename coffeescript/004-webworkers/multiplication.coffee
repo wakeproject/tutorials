@@ -8,8 +8,8 @@ global = this
 
 define [
   'underscore'
-  'exports'
-], (_, multi) ->
+], (_) ->
+    postMessage('before binding')
     global.onmessage = (e) ->
         result = _.reduce(_.values(e.data), ((memo, elem) -> memo * elem), 1)
         postMessage(result)
