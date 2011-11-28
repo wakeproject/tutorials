@@ -42,4 +42,5 @@ define [
         console.info('start of calling from page');
         worker.postMessage(ps)
         console.info('end of calling from page');
+        true
     )
