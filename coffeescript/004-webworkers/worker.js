@@ -8,7 +8,3 @@ var worker = require({
     }
 }, ['cs!multiplication']);
 
-onmessage = function(e) {
-    worker.onmessage(e);
-};
-

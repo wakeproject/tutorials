@@ -8,6 +8,6 @@ define [
   'exports'
 ], (_, multi) ->
 
-    multi.onmessage = (e) ->
+    onmessage = (e) ->
         result = _.reduce(_.values(e.data), (memo, elem) -> memo * elem, 1)
         postMessage(result)
