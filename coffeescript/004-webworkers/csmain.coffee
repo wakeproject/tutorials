@@ -34,7 +34,7 @@ define [
              </ul>",
             ctx
         )
-        $("#params").html(list)
+        $('#params').html(list)
 
         worker = new Worker 'worker.js'
         worker.onmessage = (e) ->
