@@ -1,0 +1,21 @@
+* {
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    background-color: white;
+    color: black;
+}
+
+#canvas {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+    background-color: black;
+}
