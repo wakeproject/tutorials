@@ -9,7 +9,7 @@ define [
   'cs!/wahlque/nbody/bodies2'
 ], (_, solver, b2) ->
    handle = 0
-   start ->
+   start = ->
        [m1, m2, x1, y1, vx1, vy1, x2, y2, vx2, vy2] = e.data
        derivative = b2.derivative(m1, m2)
        phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2]
