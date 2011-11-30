@@ -10,12 +10,12 @@
     define [
       'underscore'
     ], (_) ->
-        global.postMessage('before binding')
         global.onmessage = (e) ->
-            postMessage('hello from worker!')
+            global.postMessage('hello from worker!')
             result = _.reduce(_.values(e.data), ((memo, elem) -> memo * elem), 1)
-            postMessage(result)
+            global.postMessage(result)
             false
+        global.postMessage('after binding')
         false
 )()
 
