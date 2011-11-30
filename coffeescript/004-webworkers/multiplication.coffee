@@ -11,7 +11,7 @@ define [
         self.postMessage('hello from worker!')
         result = _.reduce(e.data, ((memo, elem) -> memo * elem), 1)
         self.postMessage(result)
-        false
+        true
     self.postMessage('after binding')
-    false
+    true
 

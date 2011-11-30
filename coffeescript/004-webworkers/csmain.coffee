@@ -38,11 +38,14 @@ define [
         worker = new Worker 'worker.js'
         worker.onmessage = (e) ->
             data = 'result: ' + e.data
-            html = $('#result').html()
-            $('#result').html(html + data)
-            false
-        console.info('start of calling from page');
-        worker.postMessage( _.values(ps))
-        console.info('end of calling from page');
-        false
+            $('#result').append('<li>#{data}</li>')
+            true
+        invoke = ->
+            console.info('start of calling from page')
+            worker.postMessage( _.values(ps))
+            console.info('end of calling from page')
+
+        $("#btn").click(-> invoke())
+
+        true
     )
