@@ -42,7 +42,7 @@ define [
             $('#result').html(html + data)
             false
         console.info('start of calling from page');
-        worker.postMessage([_.keys(ps), _.values(ps)])
+        worker.postMessage( _.values(ps))
         console.info('end of calling from page');
         false
     )
