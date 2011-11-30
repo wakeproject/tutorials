@@ -59,4 +59,4 @@ define [
        )
 
        true
-
+    )
