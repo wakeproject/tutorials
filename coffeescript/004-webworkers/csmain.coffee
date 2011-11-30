@@ -13,6 +13,7 @@ define [
   'cs!/wahlque/util/url'
 ], (_, domReady, qwery, bonzo, bean, url) ->
     $ = (selector) -> bonzo(qwery(selector))
+    q = (selector) -> document.querySelectorAll(selector)
 
     domReady( ->
         ps = url.params()
@@ -40,6 +41,7 @@ define [
             data = 'result: ' + e.data
             $('#result').append("<li>#{data}</li>")
             true
+
         invoke = ->
             console.info('start of calling from page')
             worker.postMessage( _.values(ps))
@@ -47,7 +49,7 @@ define [
             true
 
         bean.add(
-            $("#btn"), 'click', (-> invoke())
+            $('#btn'), 'click', (-> invoke()), q
         )
 
         true
