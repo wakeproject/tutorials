@@ -46,7 +46,9 @@ define [
             console.info('end of calling from page')
             true
 
-        $("#btn").click(-> invoke())
+        bean.add(
+            $("#btn"), 'click', (-> invoke())
+        )
 
         true
     )
