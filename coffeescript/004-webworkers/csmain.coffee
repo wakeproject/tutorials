@@ -49,7 +49,7 @@ define [
             true
 
         bean.add(
-            $('#btn'), 'click', (-> invoke()), q
+            $('#btn').get(0), 'click', (-> invoke())
         )
 
         true
