@@ -8,7 +8,7 @@ define [
   'exports'
 ], (_, orbit) ->
 
-   canvas = document.getElementById("orb")
+   canvas = document.getElementById("canvas")
    context = canvas.getContext("2d")
    canvas.width = 512
    canvas.height = 512
