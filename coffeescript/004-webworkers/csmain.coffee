@@ -13,7 +13,6 @@ define [
   'cs!/wahlque/util/url'
 ], (_, domReady, qwery, bonzo, bean, url) ->
     $ = (selector) -> bonzo(qwery(selector))
-    q = (selector) -> document.querySelectorAll(selector)
 
     domReady( ->
         ps = url.params()
