@@ -38,7 +38,8 @@ define [
         worker = new Worker 'worker.js'
         worker.onmessage = (e) ->
             data = 'result: ' + e.data
-            $('#result').html(data)
+            html = $('#result').html()
+            $('#result').html(html + data)
             false
         console.info('start of calling from page');
         worker.postMessage(ps)
