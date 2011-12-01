@@ -5,6 +5,7 @@ require({
         domReady: '/domReady',
         qwery: '/qwery',
         bonzo: '/bonzo',
-        bean: '/bean'
+        bean: '/bean',
+        baseUrl: '/tutorials/mechanics/001-binary-stars/'
     }
 }, ['cs!csmain']);
