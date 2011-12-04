@@ -31,19 +31,9 @@ define [
         x1 = m2 / M * a
         x2 = - m1 / M * a
 
-        ps['x1'] = x1 if not ps['x1']
-        ps['y1'] = 0 if not ps['y1']
-        ps['x2'] = x2 if not ps['x2']
-        ps['y2'] = 0 if not ps['y2']
-
         v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
         v1 = v / M * m2
         v2 = - v / M * m1
-
-        ps['vx1'] = 0 if not ps['vx1']
-        ps['vy1'] = v1 if not ps['vy1']
-        ps['vx2'] = 0 if not ps['vx2']
-        ps['vy2'] = v2 if not ps['vy2']
 
         ctx =
             keys: _.keys(ps)
@@ -68,9 +58,9 @@ define [
                 orbit.paint(data);
 
         vals = [
-                ps['m1'], ps['m2'],
-                ps['x1'], ps['y1'], ps['vx1'], ps['vy1'],
-                ps['x2'], ps['y2'], ps['vx2'], ps['vy2']
+                m1, m2,
+                x1, 0, 0, v1,
+                x2, 0, 0, v2
         ]
         invoke = ->
             worker.postMessage(vals)
