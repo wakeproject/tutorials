@@ -59,8 +59,13 @@ define [
             else
                 orbit.paint(data);
 
+        vals = [
+                ps['m1'], ps['m2'],
+                ps['x1'], ps['y1'], ps['vx1'], ps['vy1'],
+                ps['x2'], ps['y2'], ps['vx2'], ps['vy2']
+        ]
         invoke = ->
-            worker.postMessage(_.values(ps))
+            worker.postMessage(vals)
             true
 
         bean.add(
