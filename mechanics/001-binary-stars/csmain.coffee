@@ -23,15 +23,13 @@ define [
         ps['a'] = 4 if not ps['a']
         ps['e'] = 0 if not ps['e']
 
-        m1 = ps['m1']
-        m2 = ps['m2']
-        a = ps['a']
-        e = ps['e']
+        m1 = parseFloat(ps['m1'])
+        m2 = parseFloat(ps['m2'])
+        a = parseFloat(ps['a'])
+        e = parseFloat(ps['e'])
         M = m1 + m2
         x1 = m2 / M * a
         x2 = - m1 / M * a
-
-        alert([m1, m2, a, e].join(', '))
 
         v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
         v1 = 2 * v / M * m2
