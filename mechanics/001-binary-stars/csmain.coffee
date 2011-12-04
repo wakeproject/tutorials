@@ -16,7 +16,7 @@ define [
 ], (_, domReady, qwery, bonzo, bean, au, url, orbit) ->
     $ = (selector) -> bonzo(qwery(selector))
 
-    domReady( ->
+    domReady ->
         ps = url.params()
         ps['m1'] = 1 if not ps['m1']
         ps['m2'] = 1 if not ps['m2']
@@ -32,7 +32,7 @@ define [
         v1 = v / (ps['m1'] + ps['m2']) * ps['m2']
         v2 = v / (ps['m1'] + ps['m2']) * ps['m1']
 
-        ps['vx1'] = v1 / dr * dy  if not ps['vx1']
+        ps['vx1'] = v1 / dr * dy if not ps['vx1']
         ps['vy1'] = v1 / dr * dx if not ps['vy1']
         ps['vx2'] = -v2 / dr * dy if not ps['vx2']
         ps['vy2'] = -v2 / dr * dx if not ps['vy2']
@@ -68,4 +68,3 @@ define [
         )
 
        true
-    )
