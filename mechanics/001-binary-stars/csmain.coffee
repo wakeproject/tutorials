@@ -27,12 +27,11 @@ define [
         m2 = parseFloat(ps['m2'])
         a = parseFloat(ps['a'])
         e = parseFloat(ps['e'])
-        l = a * (1 - e)
         M = m1 + m2
-        y1 = m2 / M * l
-        y2 = - m1 / M * l
+        x1 = m2 / M * a
+        x2 = - m1 / M * a
 
-        v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
+        v  = Math.sqrt(au.G * M / a * (1 - e) / (1 + e))
         v1 = v / M * m2
         v2 = - v / M * m1
 
@@ -60,8 +59,8 @@ define [
 
         vals = [
                 m1, m2,
-                0, y1, v1, 0,
-                0, y2, v2, 0
+                x1, 0, 0, v1,
+                x2, 0, 0, v2
         ]
         invoke = ->
             worker.postMessage(vals)
