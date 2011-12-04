@@ -60,8 +60,8 @@ define [
 
         vals = [
                 m1, m2,
-                0, y1, 0, v1,
-                0, y2, 0, v2
+                0, y1, v1, 0,
+                0, y2, v2, 0
         ]
         invoke = ->
             worker.postMessage(vals)
