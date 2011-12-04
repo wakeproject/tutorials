@@ -28,14 +28,14 @@ define [
         dx = ps['x1'] - ps['x2']
         dy = ps['y1'] - ps['y2']
         dr = Math.sqrt(dx * dx + dy * dy)
-        v  = Math.sqrt(au.G * (ps['m1'] + ps['m2']) / dr)
+        v  = Math.sqrt(2 * au.G * (ps['m1'] + ps['m2']) / dr)
         v1 = v / (ps['m1'] + ps['m2']) * ps['m2']
         v2 = v / (ps['m1'] + ps['m2']) * ps['m1']
 
-        ps['vx1'] = v1 / dr * dx if not ps['vx1']
-        ps['vy1'] = v1 / dr * dy if not ps['vy1']
-        ps['vx2'] = -v2 / dr * dx if not ps['vx2']
-        ps['vy2'] = -v2 / dr * dy if not ps['vy2']
+        ps['vx1'] = v1 / dr * dy if not ps['vx1']
+        ps['vy1'] = v1 / dr * dx if not ps['vy1']
+        ps['vx2'] = -v2 / dr * dy if not ps['vx2']
+        ps['vy2'] = -v2 / dr * dx if not ps['vy2']
 
         ctx =
             keys: _.keys(ps)
