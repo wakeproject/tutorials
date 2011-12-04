@@ -33,8 +33,8 @@ define [
         y2 = - m1 / M * b
 
         v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
-        v1 = 2 * v / M * m2
-        v2 = - 2 * v / M * m1
+        v1 = v / M * m2
+        v2 = - v / M * m1
 
         ctx =
             keys: _.keys(ps)
