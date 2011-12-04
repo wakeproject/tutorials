@@ -28,8 +28,8 @@ define [
         a = parseFloat(ps['a'])
         e = parseFloat(ps['e'])
         M = m1 + m2
-        x1 = m2 / M * a * 2
-        x2 = - m1 / M * a * 2
+        x1 = m2 / M * a
+        x2 = - m1 / M * a
 
         v  = Math.sqrt(au.G * M / a * (1 - e) / (1 + e))
         v1 = v / M * m2
