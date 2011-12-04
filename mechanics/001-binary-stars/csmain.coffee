@@ -31,7 +31,7 @@ define [
         x1 = m2 / M * a
         x2 = - m1 / M * a
 
-        v  = Math.sqrt(au.G * M / a * (1 - e) / (1 + e))
+        v  = Math.sqrt(au.G * M / a)
         v1 = v / M * m2
         v2 = - v / M * m1
 
