@@ -21,7 +21,7 @@ define [
         ps['m1'] = 1 if not ps['m1']
         ps['m2'] = 1 if not ps['m2']
         ps['a'] = 4 if not ps['a']
-        ps['theta'] = 0 if not ps['theta']
+        ps['e'] = 0 if not ps['e']
 
         m1 = parseFloat(ps['m1'])
         m2 = parseFloat(ps['m2'])
