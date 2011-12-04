@@ -32,8 +32,8 @@ define [
         x2 = - m1 / M * a
 
         v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
-        v1 = v / M * m2
-        v2 = - v / M * m1
+        v1 = v / M * m1
+        v2 = - v / M * m2
 
         ctx =
             keys: _.keys(ps)
