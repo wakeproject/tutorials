@@ -28,7 +28,7 @@ define [
         dx = ps['x1'] - ps['x2']
         dy = ps['y1'] - ps['y2']
         dr = Math.sqrt(dx * dx + dy * dy)
-        v  = Math.sqrt(4 * au.G * (ps['m1'] + ps['m2']) / dr)
+        v  = Math.sqrt(au.G * (ps['m1'] + ps['m2']) / dr)
         v1 = v / (ps['m1'] + ps['m2']) * ps['m2']
         v2 = v / (ps['m1'] + ps['m2']) * ps['m1']
 

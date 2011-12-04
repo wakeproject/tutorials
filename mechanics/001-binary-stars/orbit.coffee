@@ -25,7 +25,7 @@ define [
     orbit.paint = (data) ->
         [x1, y1, vx1, vy1, x2, y2, vx2, vy2] = data
         context.clearRect(0, 0, 512, 512)
-        circle(s(x1), s(y1), 6, "blue")
+        circle(s(x1), s(y1), 4, "blue")
         circle(s(x2), s(y2), 4, "yellow")
 
     orbit
