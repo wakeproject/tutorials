@@ -20,22 +20,24 @@ define [
         ps = url.params()
         ps['m1'] = 1 if not ps['m1']
         ps['m2'] = 1 if not ps['m2']
-        ps['x1'] = 1 if not ps['x1']
+        ps['a'] = 4 if not ps['a']
+
+        x1 = ps['m2'] / (ps['m1'] + ps['m2']) * a
+        x2 = - ps['m1'] / (ps['m1'] + ps['m2']) * a
+
+        ps['x1'] = x1 if not ps['x1']
         ps['y1'] = 0 if not ps['y1']
-        ps['x2'] = -1 if not ps['x2']
+        ps['x2'] = x2 if not ps['x2']
         ps['y2'] = 0 if not ps['y2']
 
-        dx = ps['x1'] - ps['x2']
-        dy = ps['y1'] - ps['y2']
-        dr = Math.sqrt(dx * dx + dy * dy)
-        v  = Math.sqrt(au.G * (ps['m1'] + ps['m2']) / dr)
+        v  = Math.sqrt(au.G * (ps['m1'] + ps['m2']) / a)
         v1 = v / (ps['m1'] + ps['m2']) * ps['m2']
-        v2 = v / (ps['m1'] + ps['m2']) * ps['m1']
+        v2 = - v / (ps['m1'] + ps['m2']) * ps['m1']
 
-        ps['vx1'] = v1 / dr * dy if not ps['vx1']
-        ps['vy1'] = v1 / dr * dx if not ps['vy1']
-        ps['vx2'] = -v2 / dr * dy if not ps['vx2']
-        ps['vy2'] = -v2 / dr * dx if not ps['vy2']
+        ps['vx1'] = 0 if not ps['vx1']
+        ps['vy1'] = v1 if not ps['vy1']
+        ps['vx2'] = 0 if not ps['vx2']
+        ps['vy2'] = v2 if not ps['vy2']
 
         ctx =
             keys: _.keys(ps)
