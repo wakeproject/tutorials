@@ -21,18 +21,24 @@ define [
         ps['m1'] = 1 if not ps['m1']
         ps['m2'] = 1 if not ps['m2']
         ps['a'] = 4 if not ps['a']
+        ps['e'] = 0 if not ps['e']
 
-        x1 = ps['m2'] / (ps['m1'] + ps['m2']) * a
-        x2 = - ps['m1'] / (ps['m1'] + ps['m2']) * a
+        m1 = ps['m1']
+        m2 = ps['m2']
+        a = ps['a']
+        e = ps['e']
+        M = m1 + m2
+        x1 = m2 / M * a
+        x2 = - m1 / M * a
 
         ps['x1'] = x1 if not ps['x1']
         ps['y1'] = 0 if not ps['y1']
         ps['x2'] = x2 if not ps['x2']
         ps['y2'] = 0 if not ps['y2']
 
-        v  = Math.sqrt(au.G * (ps['m1'] + ps['m2']) / a)
-        v1 = v / (ps['m1'] + ps['m2']) * ps['m2']
-        v2 = - v / (ps['m1'] + ps['m2']) * ps['m1']
+        v  = Math.sqrt(au.G * M / a * (1 + e) / (1 - e))
+        v1 = v / M * m2
+        v2 = - v / M * m1
 
         ps['vx1'] = 0 if not ps['vx1']
         ps['vy1'] = v1 if not ps['vy1']
