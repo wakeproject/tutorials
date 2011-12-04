@@ -1,7 +1,6 @@
 importScripts('/require.js');
 
 require({
-    waitSeconds: 20,
     paths: {
         cs: '/cs',
         underscore: '/underscore',
