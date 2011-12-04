@@ -19,7 +19,17 @@ body {
     top: 150px;
     left: 572px;
     width: 400px;
-    height: 512px;
+    height: 300px;
+    overflow: hidden;
+    background-color: white;
+}
+
+#msg {
+    position: absolute;
+    top: 450px;
+    left: 572px;
+    width: 400px;
+    height: 200px;
     overflow: hidden;
     background-color: white;
 }
