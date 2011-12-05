@@ -1,0 +1,35 @@
+body {
+    background-color: white;
+    color: black;
+    margin: 10px;
+}
+
+#canvas {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+    background-color: black;
+}
+
+#params {
+    position: absolute;
+    top: 150px;
+    left: 572px;
+    width: 400px;
+    height: 350px;
+    overflow: hidden;
+    background-color: white;
+}
+
+#msg {
+    position: absolute;
+    top: 450px;
+    left: 572px;
+    width: 400px;
+    height: 150px;
+    overflow: hidden;
+    background-color: white;
+}
