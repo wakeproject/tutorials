@@ -27,6 +27,6 @@ define [
         context.clearRect(0, 0, 512, 512)
         circle(s(x1), s(y1), 6, "blue")
         circle(s(x2), s(y2), 4, "yellow")
-        circle(s(x3), s(y3), 1, "gray")
+        circle(s(x3), s(y3), 2, "gray")
 
     orbit
