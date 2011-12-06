@@ -5,9 +5,9 @@
 ###
 define [
     'exports',
-    'cs!/wahlque/ode/euler',
-    'cs!/wahlque/nbody/bodies2',
-    'cs!/wahlque/units/au'
+    'cs!/wahlque/math/ode/euler',
+    'cs!/wahlque/physics/nbody/bodies2',
+    'cs!/wahlque/physics/units/au'
 ], (exports, solver, b2, au) ->
     handle = 0
     time = 0

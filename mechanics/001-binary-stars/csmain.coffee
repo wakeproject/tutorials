@@ -10,7 +10,7 @@ define [
   'qwery',
   'bonzo',
   'bean',
-  'cs!/wahlque/units/au',
+  'cs!/wahlque/physics/units/au',
   'cs!/wahlque/util/url',
   'cs!orbit'
 ], (_, domReady, qwery, bonzo, bean, au, url, orbit) ->
