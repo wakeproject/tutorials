@@ -6,16 +6,18 @@
 define [
     'exports',
     'cs!/wahlque/ode/euler',
-    'cs!/wahlque/nbody/bodies2'
-], (exports, solver, b2) ->
+    'cs!/wahlque/nbody/bodies2',
+    'cs!/wahlque/units/au'
+], (exports, solver, b2, au) ->
     handle = 0
     time = 0
     start = (e) ->
         [m1, m2, x1, y1, vx1, vy1, x2, y2, vx2, vy2] = e.data
-        derivative = b2.derivative(m1, m2)
+        derivative = b2.derivative(au, m1, m2)
+        step = solver.solve(derivative)
         phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2]
         evolve = ->
-            [time, phase] = solver.step(time, phase, derivative, 0.1)
+            [time, phase] = step(time, phase, 1)
             self.postMessage({msg: phase.join(', ')})
             self.postMessage(phase)
         handle = setInterval(evolve, 100)
