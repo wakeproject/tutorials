@@ -43,7 +43,7 @@ define [
             vals: ps
         list = _.template(
             "<ul>
-              <form action='/tutorials/mechanics/001-binary-stars/' method='get'>
+              <form action='/tutorials/mechanics/002-restricted-3-bodies/' method='get'>
               <% _.each(keys, function(key) { %> <li><%= key %>: <input type='text' name='<%= key %>' value='<%= vals[key] %>'></li> <% }); %>
               <input type='submit' value='Submit' />
               </form>
