@@ -46,9 +46,13 @@ define [
             self.postMessage({lum: luminosity})
 
             if time - Math.floor(time) < 0.1
-                lng = (i) -> 2 * Math.PI / 128.0 * i
-                lat = (j) -> Math.PI / 128.0 * (64 - j)
-                cut = (val) -> val > 0 ? val : 0
+                lng = (i) -> 2 * Math.PI / 128 * i
+                lat = (j) -> Math.PI / 128 * (64 - j)
+                cut = (val) ->
+                        if val > 0
+                               val
+                        else
+                               0
                 u1 = vec3.unify([x1 - x3, y1 - y3, 0])
                 u2 = vec3.unify([x2 - x3, y2 - y3, 0])
                 twilight = (
