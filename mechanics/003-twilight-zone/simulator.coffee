@@ -18,14 +18,15 @@ define [
     start = () ->
         m1 = a.mass
         m2 = b.mass
+        acceleration = b3.acceleration(au, m1, m2)
+        step = solver.solve(acceleration)
+
         [x1, y1] = a.initPosition
         [vx1, vy1] = a.initVelocity
-        [x2, y2] = b.initPosiotion
+        [x2, y2] = b.initPosition
         [vx2, vy2] = b.initVelocity
         [x3, y3] = p.initPosition
         [vx3, vy3] = p.initVelocity
-        acceleration = b3.acceleration(au, m1, m2)
-        step = solver.solve(acceleration)
         x = [x1, y1, x2, y2, x3, y3]
         v = [vx1, vy1, vx2, vy2, vx3, vy3]
 
