@@ -45,14 +45,16 @@ define [
             luminosity = lum1 + lum2
             self.postMessage({lum: luminosity})
 
-            lng = (i) -> 2 * Math.PI / 512 * i
-            lat = (j) -> Math.PI / 512 * (256 - j)
+            lng = (i) -> 2 * Math.PI / 128 * i
+            lat = (j) -> Math.PI / 128 * (64 - j)
             u1 = vec3.unify([x1 - x3, y1 - y3, 0])
             u2 = vec3.unify([x2 - x3, y2 - y3, 0])
-            twilight = ([
+            twilight = (
+              [
                 lum1 * vec3.inner(p.zenith(lng(i), lat(j), time), u1)
                 lum2 * vec3.inner(p.zenith(lng(i), lat(j), time), u2)
-            ] for i in [0...512] for j in [0...512])
+              ] for i in [0...128] for j in [0...128]
+            )
             self.postMessage({twlt: twilight})
 
         handle = setInterval(evolve, 100)

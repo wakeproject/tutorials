@@ -14,8 +14,8 @@ define [
 
     twilight.paint = (data) ->
         context.clearRect(0, 0, 512, 512)
-        for i in [0...511]
-            for j in [0...511]
+        for i in [0...128]
+            for j in [0...128]
                 [blue, yellow] = data[i][j]
 
                 blue = blue * 2048
@@ -30,6 +30,6 @@ define [
 
                 fill = "#" + hexY + hexY + hexB
                 context.fillStyle = fill
-                context.fillRect(i, j, 1, 1)
+                context.fillRect(4 * i, 4 * j, 4, 4)
 
     twilight
