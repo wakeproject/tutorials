@@ -27,7 +27,8 @@ define [
             context.fillStyle = "#ff0000"
             context.fillRect(i, 1, 1, 1);
 
-            measure = 0, cnt = 0
+            measure = 0
+            cnt = 0
             for k in [0...10]
                 l = ls[10 * i + k]
                 if (l)
