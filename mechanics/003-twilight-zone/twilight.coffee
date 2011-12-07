@@ -18,13 +18,13 @@ define [
             for j in [0...128]
                 [blue, yellow] = data[i][j]
 
-                blue = blue * 2048
-                blue = blue > 255 ? 255 : blue
+                blue = blue * 256
+                blue = 255 if blue > 255
                 hexB = Math.round(blue).toString(16)
                 hexB = '0' + hexB if hexB.length == 1
 
-                yellow = yellow * 8192;
-                yellow = yellow > 255 ? 255 : yellow
+                yellow = yellow * 512
+                yellow = 255 if yellow > 255
                 hexY = Math.round(yellow).toString(16)
                 hexY = '0' + hexY if hexY.length == 1
 
