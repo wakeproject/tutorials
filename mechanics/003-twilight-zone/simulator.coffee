@@ -56,10 +56,9 @@ define [
                         [
                            lum1 * cut(vec3.inner(p.zenith(lng(i), lat(j), time), u1))
                            lum2 * cut(vec3.inner(p.zenith(lng(i), lat(j), time), u2))
-                        ] for j in [0...128]
-                    ) for i in [0...128]
+                        ] for j in [0...256]
+                    ) for i in [0...256]
                 )
-                self.postMessage({msg: vec3.inner(p.zenith(lng(64), lat(64), time), u1)})
                 self.postMessage({twlt: twilight})
 
         handle = setInterval(evolve, 100)
