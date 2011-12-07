@@ -25,7 +25,7 @@ define [
             if data.orb
                 orbit.paint(data.orb)
             else if data.twlt
-                $('#msg').html(data.twlt[0][0][0])
+                $('#msg').html(data.twlt[64][64][0])
                 twilight.paint(data.twlt)
             else if data.lum
                 luminosity.paint(data.lum)
