@@ -13,7 +13,7 @@ define [
     canvas.height = 512
 
     twilight.paint = (data) ->
-        #context.clearRect(0, 0, 512, 512)
+        context.clearRect(0, 0, 512, 512)
         for i in [0...128]
             for j in [0...128]
                 [blue, yellow] = data[i][j]
