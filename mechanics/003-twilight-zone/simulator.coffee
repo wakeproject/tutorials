@@ -33,8 +33,8 @@ define [
         l1 = a.luminosity
         l2 = b.luminosity
 
-        lng = (i) -> 2 * Math.PI / 128 * i
-        lat = (j) -> Math.PI / 128 * (64 - j)
+        lng = (i) -> 2 * Math.PI / 256 * i
+        lat = (j) -> Math.PI / 256 * (128 - j)
         cut = (val) -> val > 0 ? val : 0
         evolve = ->
             [time, x, v] = step(time, x, v, 0.1)
