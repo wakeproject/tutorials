@@ -12,7 +12,7 @@ define [
     canvas.width = 1052
     canvas.height = 80
 
-    ls = 0 for i in [0...10520]
+    ls = (0 for i in [0...10520])
 
     luminosity.paint = (data) ->
         ls.shift()
