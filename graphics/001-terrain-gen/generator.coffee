@@ -12,7 +12,7 @@ define [
         seeds = terrain.seeds()
         evolve = ->
             seeds = terrain.gen(seeds)
-            data = terrain.resovle(seeds)
+            data = terrain.resolve(seeds)
             if data[0] = 512
                 self.postMessage({msg: 'done!'})
                 clearInterval(handle)
