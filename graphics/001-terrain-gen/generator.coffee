@@ -12,7 +12,7 @@ define [
         seeds = terrain.seeds()
         evolve = ->
             seeds = terrain.gen(seeds)
-            if seeds[0] == 8192
+            if seeds[0] == 4096
                 self.postMessage({msg: 'done!'})
                 clearInterval(handle)
             else
