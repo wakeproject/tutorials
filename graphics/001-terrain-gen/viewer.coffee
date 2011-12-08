@@ -39,6 +39,6 @@ define [
                 pos = row * num + row + col
                 height = heights[pos]
                 context.fillStyle = color(height)
-                context.fillRect(width * col, 2 * width * row, width, 2 * width)
+                context.fillRect(2 * width * col, width * row, 2 * width, width)
 
     viewer
