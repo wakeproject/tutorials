@@ -11,7 +11,7 @@ define [
     'cs!/wahlque/physics/units/au'
     'cs!/wahlque/universe/starA'
     'cs!/wahlque/universe/starB'
-    'cs!/wahlque/universe/planet'
+    'cs!/wahlque/universe/planet/planet'
 ], (exports, solver, vec3, b3, au, a, b, p) ->
     handle = 0
     time = 0
