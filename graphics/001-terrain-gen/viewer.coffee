@@ -16,7 +16,7 @@ define [
     color = (height) ->
         r = 128
         b = 192
-        r = Math.floor(height / 52) if height > 8192
+        r = Math.floor(height / 48) if height > 8192
         r = 255 if r > 255
         b = Math.floor(320 - height / 64) if height < 8192
         g = Math.floor((r + b) / 1.5)
@@ -32,10 +32,10 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 1536, 1024)
+        context.clearRect(0, 0, 640, 480)
 
         [num, len, heights] = data
-        width = 640 / num
+        width = 1024 / num
         for row in [0..num]
             for col in [0..num]
                 pos = row * num + row + col
