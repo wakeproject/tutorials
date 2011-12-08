@@ -6,7 +6,7 @@
 define [
   'exports'
   'cs!/wahlque/universe/planet/terrain'
-], (exports, terrian) ->
+], (exports, terrain) ->
     handle = 0
     start = () ->
         seeds = terrain.seeds()
