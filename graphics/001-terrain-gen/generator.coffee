@@ -7,7 +7,7 @@ define [
   'exports'
   'cs!/wahlque/universe/planet/terrain'
 ], (exports, terrian) ->
-  handle = 0
+    handle = 0
     start = () ->
         seeds = terrain.seeds()
         evolve = ->
