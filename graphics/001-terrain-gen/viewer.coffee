@@ -37,11 +37,11 @@ define [
 
         [num, len, heights] = data
         width = 512 / num
-        for row in [0..num]
-            for col in [0..num]
+        for row in [0...num]
+            for col in [0...num]
                 pos = row * num + row + col
                 height = heights[pos] / 64
                 context.fillStyle = color(height)
-                context.fillRect(2 * width * col, width * row, 2 * width, width)
+                context.fillRect(Math.floor(2 * width * col), Math.floor(width * row), 2 * width, width)
 
     viewer
