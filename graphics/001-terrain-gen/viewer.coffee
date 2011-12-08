@@ -10,8 +10,8 @@ define [
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
-    canvas.width = 1536
-    canvas.height = 1024
+    canvas.width = 1024
+    canvas.height = 512
 
     color = (height) ->
         r = 128
@@ -32,7 +32,7 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 640, 480)
+        context.clearRect(0, 0, 1024, 512)
 
         [num, len, heights] = data
         width = 1024 / num
@@ -41,6 +41,6 @@ define [
                 pos = row * num + row + col
                 height = heights[pos] / 64
                 context.fillStyle = color(height)
-                context.fillRect(1.5 * width * col, width * row, 1.5 * width, width)
+                context.fillRect(2 * width * col, width * row, 2 * width, width)
 
     viewer
