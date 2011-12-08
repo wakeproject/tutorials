@@ -35,7 +35,7 @@ define [
         context.clearRect(0, 0, 1024, 512)
 
         [num, len, heights] = data
-        width = 1024 / num
+        width = 512 / num
         for row in [0..num]
             for col in [0..num]
                 pos = row * num + row + col
