@@ -10,8 +10,8 @@ define [
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
-    canvas.width = 1024
-    canvas.height = 512
+    canvas.width = 640
+    canvas.height = 320
 
     color = (height) ->
         r = 128
@@ -20,7 +20,7 @@ define [
         r = 255 if r > 255
         b = Math.floor(320 - height / 64) if height < 8192
         b = 255 if b > 255
-        g = Math.floor((r + b) / 1.3)
+        g = Math.floor((r + b) / 1.5)
         g = 255 if g > 255
 
         hexR = Math.round(r).toString(16)
@@ -33,10 +33,10 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 1024, 512)
+        context.clearRect(0, 0, 640, 320)
 
         [num, len, heights] = data
-        width = 512 / num
+        width = 320 / num
         for row in [0..num]
             for col in [0..num]
                 pos = row * num + row + col
