@@ -20,7 +20,7 @@ define [
         r = 255 if r > 255
         b = Math.floor(320 - height / 64) if height < 8192
         b = 255 if b > 255
-        g = Math.floor((r + b) / 1.7)
+        g = Math.floor((r + b) / 1.3)
         g = 255 if g > 255
 
         hexR = Math.round(r).toString(16)
