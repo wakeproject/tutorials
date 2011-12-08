@@ -15,7 +15,7 @@ define [
 
     color = (height) ->
         r = 128
-        b = 128
+        b = 192
         r = Math.floor(height / 64) if height > 8192
         b = Math.floor(256 - height / 64) if height < 8192
         g = Math.floor((r + b) /2)
