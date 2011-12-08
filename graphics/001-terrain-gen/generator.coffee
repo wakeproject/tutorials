@@ -12,7 +12,7 @@ define [
     start = () ->
         seeds = terrain.seeds()
         evolve = ->
-            if counter < 10
+            if counter < 9
                 seeds = terrain.gen(seeds)
                 counter = counter + 1
                 self.postMessage({trn: seeds})
