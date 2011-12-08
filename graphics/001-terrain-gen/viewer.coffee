@@ -17,7 +17,7 @@ define [
         r = 128
         b = 192
         r = Math.floor(height / 64) if height > 8192
-        b = Math.floor(256 - height / 64) if height < 8192
+        b = Math.floor(320 - height / 64) if height < 8192
         g = Math.floor((r + b) /2)
 
         hexR = Math.round(r).toString(16)
