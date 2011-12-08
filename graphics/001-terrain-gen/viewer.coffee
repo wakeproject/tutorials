@@ -10,15 +10,16 @@ define [
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
-    canvas.width = 1024
-    canvas.height = 512
+    canvas.width = 3072
+    canvas.height = 2048
 
     color = (height) ->
         r = 128
         b = 192
         r = Math.floor(height / 64) if height > 8192
         b = Math.floor(320 - height / 64) if height < 8192
-        g = Math.floor((r + b) /2)
+        g = Math.floor((r + b) / 1.5)
+        g = 255 if g > 255
 
         hexR = Math.round(r).toString(16)
         hexR = '0' + hexR if hexR.length == 1
@@ -30,15 +31,15 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 1024, 512)
+        context.clearRect(0, 0, 3072, 2048)
 
         [num, len, heights] = data
-        width = 512 / num
+        width = 1024 / num
         for row in [0..num]
             for col in [0..num]
                 pos = row * num + row + col
                 height = heights[pos] / 64
                 context.fillStyle = color(height)
-                context.fillRect(2 * width * col, width * row, 2 * width, width)
+                context.fillRect(3 * width * col, 2 * width * row, 3 * width, 2 * width)
 
     viewer

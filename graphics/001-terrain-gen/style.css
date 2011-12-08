@@ -8,8 +8,7 @@ body {
     position: absolute;
     top: 150px;
     left: 10px;
-    width: 1024px;
-    height: 512px;
-    overflow: hidden;
+    width: 3072px;
+    height: 2048px;
     background-color: black;
 }
