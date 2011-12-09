@@ -10,8 +10,8 @@ define [
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
-    canvas.width = 8192
-    canvas.height = 4096
+    canvas.width = 4096
+    canvas.height = 2048
 
     color = (height) ->
         r = 128
@@ -33,10 +33,10 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 8192, 4096)
+        context.clearRect(0, 0, 4096, 2048)
 
         [num, len, heights] = data
-        width = 1024 / num
+        width = 512 / num
         for row in [0...num]
             for col in [0...num]
                 pos = row * num + row + col
@@ -46,7 +46,7 @@ define [
 
     counter = 1
     viewer.convertImage = ->
-        img = new Image()
+        img = new Image(128, 64)
         img.id = 'img_' + counter
         img.src = canvas.toDataURL("image/png;base64")
         document.getElementById("image").appendChild(img)

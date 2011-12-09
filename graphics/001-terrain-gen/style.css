@@ -8,15 +8,16 @@ body {
     position: absolute;
     top: 150px;
     left: 10px;
-    width: 8192px;
-    height: 4096px;
+    width: 4096px;
+    height: 2048px;
     background-color: black;
 }
 
 #image {
     position: absolute;
-    top: 30px;
-    left: 10px;
+    top: 50px;
+    left: 500px;
     width: 128px;
     height: 64px;
+    background-color: black;
 }
