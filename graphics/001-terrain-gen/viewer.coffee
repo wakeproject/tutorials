@@ -33,7 +33,7 @@ define [
         "#" + hexR + hexG + hexB
 
     viewer.paint = (data) ->
-        context.clearRect(0, 0, 1024, 512)
+        context.clearRect(0, 0, 8192, 4096)
 
         [num, len, heights] = data
         width = 1024 / num

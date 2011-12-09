@@ -31,7 +31,7 @@ define [
             $('#btnGen').get(0), 'click', (-> invoke())
         )
         bean.add(
-            $('#btnCon').get(0), 'click', (-> viewer.convertImage())
+            $('#btnCon').get(0), 'click', (-> viewer.convertImage(); true)
         )
 
        true

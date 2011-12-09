@@ -16,7 +16,7 @@ body {
 #image {
     position: absolute;
     top: 30px;
-    left: 500px;
+    left: 10px;
     width: 128px;
     height: 64px;
 }
