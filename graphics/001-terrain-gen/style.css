@@ -8,7 +8,17 @@ body {
     position: absolute;
     top: 150px;
     left: 10px;
-    width: 1024px;
-    height: 512px;
+    width: 8192px;
+    height: 4096px;
+    background-color: black;
+    display: none;
+}
+
+#image {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    width: 512px;
+    height: 256px;
     background-color: black;
 }

@@ -10,8 +10,8 @@ define [
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
-    canvas.width = 1024
-    canvas.height = 512
+    canvas.width = 8192
+    canvas.height = 4096
 
     color = (height) ->
         r = 128
@@ -36,12 +36,14 @@ define [
         context.clearRect(0, 0, 1024, 512)
 
         [num, len, heights] = data
-        width = 512 / num
+        width = 4096 / num
         for row in [0...num]
             for col in [0...num]
                 pos = row * num + row + col
                 height = heights[pos] / 64
                 context.fillStyle = color(height)
                 context.fillRect(Math.floor(2 * width * col), Math.floor(width * row), 2 * width, width)
+                uri = canvas.toDataURL("image/png;base64");
+                document.getElementById("image").src = uri;
 
     viewer
