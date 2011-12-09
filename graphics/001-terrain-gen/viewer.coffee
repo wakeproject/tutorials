@@ -44,9 +44,12 @@ define [
                 context.fillStyle = color(height)
                 context.fillRect(Math.floor(2 * width * col), Math.floor(width * row), 2 * width, width)
 
+    counter = 1
     viewer.convertImage = ->
         img = new Image()
+        img.id = 'img_' + counter
         img.src = canvas.toDataURL("image/png;base64")
         document.getElementById("image").appendChild(img)
+        counter++
 
     viewer
