@@ -32,9 +32,6 @@ define [
 
         "#" + hexR + hexG + hexB
 
-    holder = document.getElementById("image")
-    img = new Image()
-    holder.appendChild(img)
     viewer.paint = (data) ->
         context.clearRect(0, 0, 1024, 512)
 
@@ -47,9 +44,9 @@ define [
                 context.fillStyle = color(height)
                 context.fillRect(Math.floor(2 * width * col), Math.floor(width * row), 2 * width, width)
 
-                holder.removeChild(img)
-                img = new Image()
-                img.src = canvas.toDataURL("image/png;base64")
-                holder.appendChild(img)
+    viewer.convertImage = ->
+        img = new Image()
+        img.src = canvas.toDataURL("image/png;base64")
+        document.getElementById("image").appendChild(img)
 
     viewer

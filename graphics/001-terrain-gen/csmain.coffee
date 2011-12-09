@@ -28,7 +28,10 @@ define [
             true
 
         bean.add(
-            $('#btn').get(0), 'click', (-> invoke())
+            $('#btnGen').get(0), 'click', (-> invoke())
+        )
+        bean.add(
+            $('#btnCon').get(0), 'click', (-> viewer.convertImage())
         )
 
        true
