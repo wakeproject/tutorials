@@ -17,11 +17,11 @@ define [
     domReady ->
         worker = new Worker './worker.js'
         worker.onmessage = (event) ->
-            data = event.data;
+            data = event.data
             if data.msg
-                $("#msg").html(data.msg);
+                $("#msg").html(data.msg)
             else if data.trn
-                viewer.paint(data.trn);
+                viewer.paint(data.trn)
 
         invoke = ->
             worker.postMessage('start')

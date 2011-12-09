@@ -6,6 +6,6 @@ require({
         qwery: '/qwery',
         bonzo: '/bonzo',
         bean: '/bean',
-        baseUrl: '/tutorials/mechanics/001-binary-stars/'
+        baseUrl: '/tutorials/graphics/001-terrain-gen/'
     }
 }, ['cs!csmain']);
