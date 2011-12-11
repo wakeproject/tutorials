@@ -1,9 +1,9 @@
-importScripts('/require.js');
+importScripts('/javascripts/require.js');
 
 require({
     paths: {
-        cs: '/cs',
-        underscore: '/underscore',
+        cs: '/javascripts/cs',
+        underscore: '/javascripts/underscore',
         baseUrl: '/tutorials/mechanics/003-twilight-zone/'
     }
 }, ['cs!simulator']);
