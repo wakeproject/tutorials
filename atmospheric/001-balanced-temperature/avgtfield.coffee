@@ -7,10 +7,10 @@ define [
     'exports'
 ], (avgt) ->
 
-    ratio = 0.5 * Math.cos(lat(j)) for j in [0...512]
-
     lat = (j) -> Math.PI / 256 * (128 - j)
     absorb = (t) -> t > 263.15 ? 0.7 : 0.4
+
+    ratio = 0.5 * Math.cos(lat(j)) for j in [0...512]
 
     avgt.init = (273.15 - 60 * (1 - Math.cos(lat(i)))) for i in [0...512]
 

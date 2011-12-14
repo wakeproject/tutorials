@@ -9,12 +9,12 @@ define [
 
     canvas = document.getElementById("temperature")
     context = canvas.getContext("2d")
-    canvas.width = 64
+    canvas.width = 256
     canvas.height = 512
 
-    pos = (t) -> Math.round((t - 200) / 200 * 64)
+    pos = (t) -> Math.round((t - 200) / 200 * 256)
     temperature.paint = (data) ->
-        context.clearRect(0, 0, 64, 512)
+        context.clearRect(0, 0, 256, 512)
         for i in [0...512]
             context.fillStyle = "#ffff00"
             context.fillRect(pos(273), i, 1, 1)

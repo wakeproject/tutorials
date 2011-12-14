@@ -40,9 +40,9 @@ define [
         cut = (val) -> val > 0 ? val : 0
 
         global = 288.15
-        temperature = avgt.init()
+        temperature = avgt.init
         evolve = ->
-            [time, x, v] = step(time, x, v, 0.1)
+            [time, x, v] = step(time, x, v, 1.25)
             [x1, y1, x2, y2, x3, y3] = x
             [vx1, vy1, vx2, vy2, vx3, vy3] = v
             phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2, x3, y3, vx3, vy3]
