@@ -30,6 +30,8 @@ define [
                 twilight.paint(data.twlt)
             else if data.lum
                 luminosity.paint(data.lum)
+            else if data.yr
+                luminosity.label(data.yr)
 
         invoke = ->
             worker.postMessage('start')

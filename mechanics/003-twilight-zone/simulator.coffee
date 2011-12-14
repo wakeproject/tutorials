@@ -15,6 +15,7 @@ define [
 ], (exports, solver, vec3, b3, au, a, b, p) ->
     handle = 0
     time = 0
+    totalyear = 0
     start = () ->
         m1 = a.mass
         m2 = b.mass
@@ -36,6 +37,7 @@ define [
         lng = (i) -> 2 * Math.PI / 256 * i
         lat = (j) -> Math.PI / 256 * (128 - j)
         cut = (val) -> val > 0 ? val : 0
+        x3p = x3
         evolve = ->
             [time, x, v] = step(time, x, v, 0.1)
             [x1, y1, x2, y2, x3, y3] = x
@@ -47,6 +49,10 @@ define [
             lum2 = l2 / ((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3))
             luminosity = lum1 + lum2
             self.postMessage({lum: luminosity})
+
+            totalyear = totalyear + 1 if x3p * x3 < 0 and y3 > 0
+            x3p = x3
+            self.postMessage({yr: totalyear})
 
             if time - Math.floor(time) < 0.1
                 u1 = vec3.unify([x1 - x3, y1 - y3, 0])

@@ -21,7 +21,7 @@ define [
         ps['m1'] = 1.29 if not ps['m1']
         ps['m2'] = 1.1 if not ps['m2']
         ps['a'] = 1.5 if not ps['a']
-        ps['l'] = 3 if not ps['l']
+        ps['l'] = 2.3 if not ps['l']
 
         m1 = parseFloat(ps['m1'])
         m2 = parseFloat(ps['m2'])

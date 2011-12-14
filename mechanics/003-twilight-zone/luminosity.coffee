@@ -13,7 +13,7 @@ define [
     canvas.height = 80
 
     ls = (0 for i in [0...10520])
-
+    yrs = []
     luminosity.paint = (data) ->
         ls.shift()
         ls.push(data)
@@ -39,5 +39,16 @@ define [
 
             context.fillStyle = "#000000"
             context.fillRect(i, value, 2, 2)
+
+        for y in yrs
+            context.fillStyle = "#ff0000"
+            context.fillRect(1052 - Math.round(y / 10), 80, 1, 80)
+
+    lastyear = 0
+    luminosity.label = (year) ->
+        yrs = (y + 1 for y in yrs)
+        if year != lastyear
+            yrs.push(0)
+            lastyear = year
 
     luminosity
