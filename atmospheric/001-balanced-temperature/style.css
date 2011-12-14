@@ -24,6 +24,16 @@ body {
     background-color: black;
 }
 
+#temperature {
+    position: absolute;
+    top: 150px;
+    left: 1080px;
+    width: 64px;
+    height: 512px;
+    overflow: hidden;
+    background-color: black;
+}
+
 #luminosity {
     position: absolute;
     top: 682px;

@@ -15,7 +15,8 @@ define [
   'cs!orbit',
   'cs!twilight',
   'cs!luminosity'
-], (_, domReady, qwery, bonzo, bean, au, url, orbit, twilight, luminosity) ->
+  'cs!temperature'
+], (_, domReady, qwery, bonzo, bean, au, url, orbit, twilight, luminosity, temperature) ->
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
@@ -30,6 +31,8 @@ define [
                 twilight.paint(data.twlt)
             else if data.lum
                 luminosity.paint(data.lum)
+            else if data.tmp
+                temperature.paint(data.tmp)
 
         invoke = ->
             worker.postMessage('start')

@@ -12,7 +12,9 @@ define [
     'cs!/wahlque/universe/starA'
     'cs!/wahlque/universe/starB'
     'cs!/wahlque/universe/planet/planet'
-], (exports, solver, vec3, b3, au, a, b, p) ->
+    'cs!/wahlque/universe/planet/radiation'
+    'cs!avgtfield'
+], (exports, solver, vec3, b3, au, a, b, p, r, avgt) ->
     handle = 0
     time = 0
     start = () ->
@@ -36,6 +38,9 @@ define [
         lng = (i) -> 2 * Math.PI / 256 * i
         lat = (j) -> Math.PI / 256 * (128 - j)
         cut = (val) -> val > 0 ? val : 0
+
+        global = 288.15
+        temperature = avgt.init()
         evolve = ->
             [time, x, v] = step(time, x, v, 0.1)
             [x1, y1, x2, y2, x3, y3] = x
@@ -43,22 +48,24 @@ define [
             phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2, x3, y3, vx3, vy3]
             self.postMessage({orb: phase})
 
-            lum1 = l1 / ((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3))
-            lum2 = l2 / ((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3))
-            luminosity = lum1 + lum2
-            self.postMessage({lum: luminosity})
+            self.postMessage({lum: r.total(time, x)})
 
-            u1 = vec3.unify([x1 - x3, y1 - y3, 0])
-            u2 = vec3.unify([x2 - x3, y2 - y3, 0])
+            lumA = r.a(time, x)
+            lumB = r.b(time, x)
             twilight = (
                 (
                     [
-                       lum1 * cut(vec3.inner(p.zenith(lng(i), lat(j), time), u1))
-                       lum2 * cut(vec3.inner(p.zenith(lng(i), lat(j), time), u2))
+                       lumA(lng(i), lat(j))
+                       lumB(lng(i), lat(j))
                     ] for j in [0...256]
                 ) for i in [0...256]
             )
             self.postMessage({twlt: twilight})
+
+            energyIn = r.averageIn(time, x)(lat(i)) for i in [0...512]
+            [global, temperature] = avgt.evolve([global, temperature], energyIn)
+            self.postMessage({tmp: temperature})
+            self.postMessage({msg: 'global temperature: ' + global})
 
         handle = setInterval(evolve, 100)
 
