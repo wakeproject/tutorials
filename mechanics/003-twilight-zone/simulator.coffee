@@ -15,7 +15,7 @@ define [
 ], (exports, solver, vec3, b3, au, a, b, p) ->
     handle = 0
     time = 0
-    totalyear = 0
+    totalyear = -1
     start = () ->
         m1 = a.mass
         m2 = b.mass
@@ -39,6 +39,9 @@ define [
         cut = (val) -> val > 0 ? val : 0
         x3p = x3
         evolve = ->
+            totalyear = totalyear + 1 if x3p * x3 <= 0 and y3 > 0
+            x3p = x3
+
             [time, x, v] = step(time, x, v, 1)
             [x1, y1, x2, y2, x3, y3] = x
             [vx1, vy1, vx2, vy2, vx3, vy3] = v
@@ -48,13 +51,9 @@ define [
             lum1 = l1 / ((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3))
             lum2 = l2 / ((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3))
             luminosity = lum1 + lum2
-            self.postMessage({lum: luminosity})
+            self.postMessage({lum: [totalyear, luminosity]})
 
-            totalyear = totalyear + 1 if x3p * x3 < 0 and y3 > 0
-            x3p = x3
-            self.postMessage({yr: totalyear})
-
-            if time - Math.floor(time) < 0.1
+            if time / 10 - Math.floor(time / 10) < 0.05
                 u1 = vec3.unify([x1 - x3, y1 - y3, 0])
                 u2 = vec3.unify([x2 - x3, y2 - y3, 0])
                 twilight = (
@@ -67,7 +66,7 @@ define [
                 )
                 self.postMessage({twlt: twilight})
 
-        handle = setInterval(evolve, 100)
+        handle = setInterval(evolve, 30)
 
     self.onmessage = (e) ->
         if handle
