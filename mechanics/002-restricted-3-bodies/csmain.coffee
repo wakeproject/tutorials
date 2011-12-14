@@ -56,7 +56,8 @@ define [
         worker.onmessage = (event) ->
             data = event.data;
             if data.msg
-                $("#msg").html(data.msg);
+                [year, time, distance] = data.msg
+                $("#msg").html('<ul><li>year: ' + year + '</li><li>time: ' + time + '</li><li>distance: ' + distance + '</li></ul>');
             else
                 orbit.paint(data);
 
