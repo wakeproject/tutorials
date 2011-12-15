@@ -15,13 +15,12 @@ define [
     pos = (t) -> Math.round((t - 200) / 200 * 256)
     temperature.paint = (data) ->
         context.clearRect(0, 0, 256, 512)
-        for i in [0...512]
+        for i in [0...256]
             context.fillStyle = "#ffff00"
-            context.fillRect(pos(273), i, 1, 1)
+            context.fillRect(pos(263.15), 2 * i, 2, 2)
             context.fillStyle = "#ff0000"
-            context.fillRect(pos(373), i, 1, 1);
-            value = pos(data[i])
-            context.fillStyle = "#000000"
-            context.fillRect(value, i, 1, 1)
+            context.fillRect(pos(373.15), 2 * i, 2, 2);
+            context.fillStyle = "#ffffff"
+            context.fillRect(pos(data[i]), 2 * i, 2, 2)
 
     temperature
