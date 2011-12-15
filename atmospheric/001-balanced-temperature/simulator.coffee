@@ -40,7 +40,8 @@ define [
         cut = (val) -> val > 0 ? val : 0
 
         global = 273.15
-        temperature = avgt.init
+        land = avgt.init
+        air = avgt.init
         evolve = ->
             [time, x, v] = step(time, x, v, 23 / 24)
             [x1, y1, x2, y2, x3, y3] = x
@@ -48,7 +49,8 @@ define [
             phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2, x3, y3, vx3, vy3]
             self.postMessage({orb: phase})
 
-            self.postMessage({lum: r.total(time, x)})
+            lumTotal = r.total(time, x)
+            self.postMessage({lum: lumTotal})
 
             lumA = r.a(time, x)
             lumB = r.b(time, x)
@@ -62,12 +64,15 @@ define [
             )
             self.postMessage({twlt: twilight})
 
-            self.postMessage({msg: 'global temperature: ' + global})
-
-            energyIn = (r.averageIn(time, x)(lat(i)) for i in [0...256])
-            data = [global, temperature]
-            [global, temperature] = avgt.evolve(data, energyIn)
-            self.postMessage({tmp: temperature})
+            data = [global, land, global, air]
+            [gland, land, gair, air] = avgt.evolve(data, r.averageIn(time, x))
+            self.postMessage({tmp: [land, air]})
+            self.postMessage({msg:
+                '<ul>' +
+                    '<li>average land temperature:' + gland + '</li>' +
+                    '<li>average air temperature:' + gair + '</li>' +
+                '</ul>'
+            })
 
         handle = setInterval(evolve, 100)
 
