@@ -21,9 +21,9 @@ define [
     acapacity = (t) -> 1005
 
     shtAbsorb = (t) -> (t > 263.15) ? 0.7 : 0.3
-    shtAbsorbLand = 168 / 342
-    shtAbsorbAir  =  67 / 342
-    lngAbsorbAir  =  350 / 390
+    shtAbsorbLand = 150 / 342
+    shtAbsorbAir  =  50 / 342
+    lngAbsorbAir  =  370 / 390
     landOutputRatio = (390 + 24 + 78) / 390
 
     da = 2 * Math.PI / 256 / 2
