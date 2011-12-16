@@ -1,5 +1,5 @@
 ###
-  simulator.coffee
+  simulatorad.coffee
 
   a demo webworker for two-body simulation:
 ###
@@ -13,27 +13,42 @@ define [
     'cs!/wahlque/universe/wahlque/starB'
     'cs!/wahlque/universe/wahlque/planet/planet'
     'cs!/wahlque/universe/wahlque/planet/radiation'
+    'cs!/wahlque/universe/solar/sun'
+    'cs!/wahlque/universe/solar/jupiter'
+    'cs!/wahlque/universe/solar/earth'
+    'cs!/wahlque/universe/solar/radiation'
     'cs!avgtfield'
-], (exports, solver, vec3, b3, au, a, b, p, r, avgt) ->
+], (exports, solver, vec3, b3, au, a, b, p, wr, sun, jupiter, earth, sr, avgt) ->
     handle = 0
     time = 0
+
+    main = a
+    compinion = b
+    planet = p
+    rad = wr
+
+    #main = sun
+    #compinion = jupiter
+    #planet = earth
+    #rad = sr
+
     start = () ->
-        m1 = a.mass
-        m2 = b.mass
+        m1 = main.mass
+        m2 = compinion.mass
         acceleration = b3.acceleration(au, m1, m2)
         step = solver.solve(acceleration)
 
-        [x1, y1] = a.initPosition
-        [vx1, vy1] = a.initVelocity
-        [x2, y2] = b.initPosition
-        [vx2, vy2] = b.initVelocity
-        [x3, y3] = p.initPosition
-        [vx3, vy3] = p.initVelocity
+        [x1, y1] = main.initPosition
+        [vx1, vy1] = main.initVelocity
+        [x2, y2] = compinion.initPosition
+        [vx2, vy2] = compinion.initVelocity
+        [x3, y3] = planet.initPosition
+        [vx3, vy3] = planet.initVelocity
         x = [x1, y1, x2, y2, x3, y3]
         v = [vx1, vy1, vx2, vy2, vx3, vy3]
 
-        l1 = a.luminosity
-        l2 = b.luminosity
+        l1 = main.luminosity
+        l2 = compinion.luminosity
 
         lng = (i) -> 2 * Math.PI / 256 * i
         lat = (j) -> Math.PI / 256 * (128 - j)
@@ -43,17 +58,17 @@ define [
         land = avgt.init
         air = avgt.init
         evolve = ->
-            [time, x, v] = step(time, x, v, au.fromSI_T(p.period))
+            [time, x, v] = step(time, x, v, au.fromSI_T(planet.period))
             [x1, y1, x2, y2, x3, y3] = x
             [vx1, vy1, vx2, vy2, vx3, vy3] = v
             phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2, x3, y3, vx3, vy3]
             self.postMessage({orb: phase})
 
-            lumTotal = r.total(time, x)
+            lumTotal = rad.total(time, x)
             self.postMessage({lum: lumTotal})
 
-            lumA = r.a(time, x)
-            lumB = r.b(time, x)
+            lumA = rad.a(time, x)
+            lumB = rad.b(time, x)
             twilight = (
                 (
                     [
@@ -65,7 +80,7 @@ define [
             self.postMessage({twlt: twilight})
 
             data = [global, land, global, air]
-            [gland, land, gair, air] = avgt.evolve(data, r.averageIn(time, x))
+            [gland, land, gair, air] = avgt.evolve(data, rad.averageIn(time, x))
             self.postMessage({tmp: [gland, land, gair, air]})
             self.postMessage({msg:
                 '<ul>' +
