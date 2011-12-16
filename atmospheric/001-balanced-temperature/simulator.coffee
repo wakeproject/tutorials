@@ -23,32 +23,32 @@ define [
     time = 0
 
     main = a
-    compinion = b
+    companion = b
     planet = p
     rad = wr
 
     #main = sun
-    #compinion = jupiter
+    #companion = jupiter
     #planet = earth
     #rad = sr
 
     start = () ->
         m1 = main.mass
-        m2 = compinion.mass
+        m2 = companion.mass
         acceleration = b3.acceleration(au, m1, m2)
         step = solver.solve(acceleration)
 
         [x1, y1] = main.initPosition
         [vx1, vy1] = main.initVelocity
-        [x2, y2] = compinion.initPosition
-        [vx2, vy2] = compinion.initVelocity
+        [x2, y2] = companion.initPosition
+        [vx2, vy2] = companion.initVelocity
         [x3, y3] = planet.initPosition
         [vx3, vy3] = planet.initVelocity
         x = [x1, y1, x2, y2, x3, y3]
         v = [vx1, vy1, vx2, vy2, vx3, vy3]
 
         l1 = main.luminosity
-        l2 = compinion.luminosity
+        l2 = companion.luminosity
 
         lng = (i) -> 2 * Math.PI / 256 * i
         lat = (j) -> Math.PI / 256 * (128 - j)
