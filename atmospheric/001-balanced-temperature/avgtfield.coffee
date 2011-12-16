@@ -5,7 +5,7 @@
 ###
 define [
     'exports'
-    'cs!/wahlque/universe/planet/planet'
+    'cs!/wahlque/universe/wahlque/planet/planet'
 ], (avgt, p) ->
 
     lcapacity = (t) ->

@@ -5,7 +5,7 @@
 ###
 define [
   'exports'
-  'cs!/wahlque/universe/planet/terrain'
+  'cs!/wahlque/universe/wahlque/planet/terrain'
 ], (exports, terrain) ->
     handle = 0
     counter = 0

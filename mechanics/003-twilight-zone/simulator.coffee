@@ -9,9 +9,9 @@ define [
     'cs!/wahlque/math/geometry/vector3'
     'cs!/wahlque/physics/nbody/bodies3pr'
     'cs!/wahlque/physics/units/au'
-    'cs!/wahlque/universe/starA'
-    'cs!/wahlque/universe/starB'
-    'cs!/wahlque/universe/planet/planet'
+    'cs!/wahlque/universe/wahlque/starA'
+    'cs!/wahlque/universe/wahlque/starB'
+    'cs!/wahlque/universe/wahlque/planet/planet'
 ], (exports, solver, vec3, b3, au, a, b, p) ->
     handle = 0
     time = 0
