@@ -36,7 +36,12 @@ define [
 
         lng = (i) -> 2 * Math.PI / 256 * i
         lat = (j) -> Math.PI / 256 * (128 - j)
-        cut = (val) -> val > 0 ? val : 0
+        cut = (val) ->
+            if val > 0
+                val
+            else
+                0
+
         x3p = x3
         evolve = ->
             totalyear = totalyear + 1 if x3p * x3 <= 0 and y3 > 0
