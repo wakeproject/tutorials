@@ -39,11 +39,11 @@ define [
         lat = (j) -> Math.PI / 256 * (128 - j)
         cut = (val) -> val > 0 ? val : 0
 
-        global = 273.15
+        global = 303.15
         land = avgt.init
         air = avgt.init
         evolve = ->
-            [time, x, v] = step(time, x, v, 23 / 24)
+            [time, x, v] = step(time, x, v, au.fromSI_T(p.period))
             [x1, y1, x2, y2, x3, y3] = x
             [vx1, vy1, vx2, vy2, vx3, vy3] = v
             phase = [x1, y1, vx1, vy1, x2, y2, vx2, vy2, x3, y3, vx3, vy3]
@@ -66,7 +66,7 @@ define [
 
             data = [global, land, global, air]
             [gland, land, gair, air] = avgt.evolve(data, r.averageIn(time, x))
-            self.postMessage({tmp: [land, air]})
+            self.postMessage({tmp: [gland, land, gair, air]})
             self.postMessage({msg:
                 '<ul>' +
                     '<li>average land temperature:' + gland + '</li>' +
