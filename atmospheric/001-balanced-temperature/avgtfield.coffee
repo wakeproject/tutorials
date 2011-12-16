@@ -29,11 +29,25 @@ define [
     lngAbsorbAir  =  370 / 390
     landOutputRatio = (390 + 24 + 78) / 390
 
-    dS = 2 * Math.PI * p.radius * 2 * p.radius / 256
+    radius = p.radius
+    period = p.period
+    dS = 2 * Math.PI * radius * 2 * radius / 256
+    dA = (a, h) -> 2 * radius * Math.PI * Math.cos(a) * h
     dV = (d) -> dS * d
 
+    transfer = (array, i) ->
+        if i == 0
+            (array[i + 1] - array[i]) / 2 / radius * 256
+        else if i == 255
+            (array[i - 1] - array[i]) / 2 / radius * 256
+        else
+            (array[i + 1] + array[i - 1] - 2 * array[i]) / 2 / radius * 256
+
     lat = (j) -> Math.PI / 256 * (128 - j)
-    avgt.init = (243.15 + 40 * Math.cos(lat(i)) for i in [0...256])
+
+    #avgt.init = (263.15 for i in [0...256])
+    #avgt.init = (253.15 + 40 * Math.cos(lat(i)) for i in [0...256])
+    avgt.init = (303.15 for i in [0...256])
 
     avgt.evolve =  (data, energyIn) ->
         [gland, land, gair, air] = data
@@ -58,7 +72,7 @@ define [
 
             ainput = shrtAirInput + (lngAbsorbAir + 1 - 1 / landOutputRatio) * loutput
 
-            atmpUpr = air[i] - 20
+            atmpUpr = air[i] - 30
             aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * dS
             aoutputUpr = 5.6696e-8 * atmpUpr * atmpUpr * atmpUpr * atmpUpr * dS
 
@@ -66,14 +80,14 @@ define [
 
             aoutput = aoutputBtm + aoutputUpr
 
-            ltransfer = 0.1 * (land[i] - gland) * 2 * p.radius * Math.PI * 10 * Math.cos(lat(i))
-            atransfer = 0.03 * (air[i] - gair) * 2 * p.radius * Math.PI * 5000 * Math.cos(lat(i))
+            ltransfer = 1000 * lcapacity(1) * 0.3 * transfer(land, i) * dA(lat(i), 10)
+            atransfer = 1 * lcapacity(1) * 1 * transfer(air, i) * dA(lat(i), 5000)
 
-            lradius = linput - loutput - ltransfer
-            aradius = ainput - aoutput - atransfer
+            lradius = linput - loutput + ltransfer
+            aradius = ainput - aoutput + atransfer
 
-            nland[i] = land[i] + lradius / lcapacity(land[i]) / dV(10) / 1000 * p.period
-            nair[i] = air[i] + aradius / acapacity(air[i]) / dV(5000) / 1 * p.period
+            nland[i] = land[i] + lradius / lcapacity(land[i]) / dV(10) / 1000 * period
+            nair[i] = air[i] + aradius / acapacity(air[i]) / dV(5000) / 1 * period
         [gland, nland, gair, nair]
 
     avgt
