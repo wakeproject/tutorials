@@ -28,17 +28,14 @@ define [
 
     da = 2 * Math.PI / 256 / 2
     dC = (lat) ->
-        if Math.abs(Math.PI / 2 - Math.abs(lat)) < da
-            Math.PI * da * da * 256 * p.radius * p.radius
-        else
-           2 * Math.PI * (Math.cos(lat - da) + Math.cos(lat + da)) * da * da * 256 * p.radius * p.radius
+        2 * Math.PI * p.radius * 2 * p.radius / 256
     circle = (dC(lat(j)) for j in [0...256])
     S = 0
     for val in circle
         S += val
     ratio = (val/S for val in circle)
 
-    avgt.init = (303.15 - 10 * Math.sin(6 * lat(i)) for i in [0...256])
+    avgt.init = (303.15 for i in [0...256])
 
     avgt.evolve =  (data, energyIn) ->
         [gland, land, gair, air] = data
@@ -59,20 +56,20 @@ define [
             shrLandInput = energyIn[i] * shtAbsorbLand * shtAbsorb(land[i])
             shrtAirInput = energyIn[i] * shtAbsorbAir
 
-            loutput = 5.6696e-8 * land[i] * land[i] * land[i] * land[i] * landOutputRatio * circle[i] / 16 * 1.2
+            loutput = 5.6696e-8 * land[i] * land[i] * land[i] * land[i] * landOutputRatio * circle[i]
 
             ainput = shrtAirInput + (lngAbsorbAir + 1 - 1 / landOutputRatio) * loutput
 
-            atmpUpr = air[i] - 20
-            aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * circle[i] / 16 * 1.2
-            aoutputUpr = 5.6696e-8 * atmpUpr * atmpUpr * atmpUpr * atmpUpr * circle[i] / 16 * 1.2
+            atmpUpr = air[i] - 35
+            aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * circle[i]
+            aoutputUpr = 5.6696e-8 * atmpUpr * atmpUpr * atmpUpr * atmpUpr * circle[i]
 
             linput = shrLandInput + aoutputBtm
 
             aoutput = aoutputBtm + aoutputUpr
 
-            ltransfer = 10 * (land[i] - gland) * circle[i] / 16
-            atransfer = 3 * (air[i] - gair) * circle[i] / 16
+            ltransfer = 0 * 10 * (land[i] - gland) * circle[i] / p.radius / Math.PI * 10 * 256
+            atransfer = 0 * 3 * (air[i] - gair) * circle[i] / p.radius / Math.PI * 5000 * 256
 
             lradius = linput - loutput - ltransfer
             aradius = ainput - aoutput - atransfer
