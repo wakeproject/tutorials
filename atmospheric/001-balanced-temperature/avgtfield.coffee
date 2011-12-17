@@ -24,9 +24,9 @@ define [
             0.7
         else
             0.3
-    shtAbsorbLand = 150 / 342
+    shtAbsorbLand = 168 / 342
     shtAbsorbAir  =  50 / 342
-    lngAbsorbAir  =  370 / 390
+    landAbsorbAir =  (350 + 24 + 78) / (390 + 24 + 78)
     landOutputRatio = (390 + 24 + 78) / 390
 
     radius = p.radius
@@ -45,8 +45,8 @@ define [
 
     lat = (j) -> Math.PI / 256 * (128 - j)
 
-    avgt.init = (273.15 for i in [0...256])
-    #avgt.init = (253.15 + 40 * Math.cos(lat(i)) for i in [0...256])
+    #avgt.init = (263.15 for i in [0...256])
+    avgt.init = (243.15 + 20 * Math.cos(lat(i)) for i in [0...256])
     #avgt.init = (303.15 for i in [0...256])
 
     avgt.evolve =  (data, energyIn) ->
@@ -70,7 +70,7 @@ define [
 
             loutput = 5.6696e-8 * land[i] * land[i] * land[i] * land[i] * landOutputRatio * dS
 
-            ainput = shrtAirInput + (lngAbsorbAir + 1 - 1 / landOutputRatio) * loutput
+            ainput = shrtAirInput + landAbsorbAir * loutput
 
             atmpUpr = air[i] - 56
             aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * dS
