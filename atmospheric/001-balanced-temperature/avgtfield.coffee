@@ -72,7 +72,7 @@ define [
 
             ainput = shrtAirInput + (lngAbsorbAir + 1 - 1 / landOutputRatio) * loutput
 
-            atmpUpr = air[i] - 30
+            atmpUpr = air[i] - 56
             aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * dS
             aoutputUpr = 5.6696e-8 * atmpUpr * atmpUpr * atmpUpr * atmpUpr * dS
 
@@ -80,8 +80,8 @@ define [
 
             aoutput = aoutputBtm + aoutputUpr
 
-            ltransfer = 1000 * lcapacity(1) * 0.3 * transfer(land, i) * dA(lat(i), 10)
-            atransfer = 1 * lcapacity(1) * 1 * transfer(air, i) * dA(lat(i), 5000)
+            ltransfer = 1000 * lcapacity(1) * 0.3 * transfer(land, i) * dA(lat(i), 10) * 100
+            atransfer = 1 * lcapacity(1) * 1 * transfer(air, i) * dA(lat(i), 5000) * 100
 
             lradius = linput - loutput + ltransfer
             aradius = ainput - aoutput + atransfer
