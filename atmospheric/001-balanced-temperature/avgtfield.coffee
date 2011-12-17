@@ -46,8 +46,8 @@ define [
     lat = (j) -> Math.PI / 256 * (128 - j)
 
     #avgt.init = (263.15 for i in [0...256])
-    avgt.init = (243.15 + 20 * Math.cos(lat(i)) for i in [0...256])
-    #avgt.init = (303.15 for i in [0...256])
+    #avgt.init = (243.15 + 20 * Math.cos(lat(i)) for i in [0...256])
+    avgt.init = (303.15 for i in [0...256])
 
     avgt.evolve =  (data, energyIn) ->
         [gland, land, gair, air] = data
