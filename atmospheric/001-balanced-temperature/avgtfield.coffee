@@ -43,7 +43,7 @@ define [
         else
             (array[i + 1] + array[i - 1] - 2 * array[i]) / 2 / radius * 256
 
-    lat = (j) -> Math.PI / 256 * (128 - j)
+    lat = (j) -> Math.asin((128 - j) / 128)
 
     rand = -> 1 + 2 * (Math.random() - 0.5) / 100
 
