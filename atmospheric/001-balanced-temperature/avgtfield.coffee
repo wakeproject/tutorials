@@ -11,12 +11,12 @@ define [
     lcapacity = (t) ->
         if t < 263.15
             2106
-        else if t < 273.15
-            33400
+        else if t < (263.15 + 2)
+            335000 / 2
         else if t < 373.15
             4218
-        else if t < 383.15
-            225000
+        else if t < (383.15 - 2)
+            2250000 / 2
     acapacity = (t) -> 1005
 
     shtAbsorb = (t) ->
@@ -24,9 +24,9 @@ define [
             0.7
         else
             0.3
-    shtAbsorbLand = 150 / 342
+    shtAbsorbLand = 168 / 342
     shtAbsorbAir  =  50 / 342
-    lngAbsorbAir  =  370 / 390
+    landAbsorbAir =  (350 + 24 + 78) / (390 + 24 + 78)
     landOutputRatio = (390 + 24 + 78) / 390
 
     radius = p.radius
@@ -45,9 +45,11 @@ define [
 
     lat = (j) -> Math.PI / 256 * (128 - j)
 
-    #avgt.init = (263.15 for i in [0...256])
-    #avgt.init = (253.15 + 40 * Math.cos(lat(i)) for i in [0...256])
-    avgt.init = (303.15 for i in [0...256])
+    rand = -> 1 + 2 * (Math.random() - 0.5) / 100
+
+    avgt.init = (273.15 for i in [0...256])
+    #avgt.init = (263.15 + 20 * Math.cos(lat(i)) for i in [0...256])
+    #avgt.init = (303.15 for i in [0...256])
 
     avgt.evolve =  (data, energyIn) ->
         [gland, land, gair, air] = data
@@ -70,7 +72,7 @@ define [
 
             loutput = 5.6696e-8 * land[i] * land[i] * land[i] * land[i] * landOutputRatio * dS
 
-            ainput = shrtAirInput + (lngAbsorbAir + 1 - 1 / landOutputRatio) * loutput
+            ainput = shrtAirInput + landAbsorbAir * loutput
 
             atmpUpr = air[i] - 56
             aoutputBtm = 5.6696e-8 * air[i] * air[i] * air[i] * air[i] * dS
@@ -80,14 +82,14 @@ define [
 
             aoutput = aoutputBtm + aoutputUpr
 
-            ltransfer = 1000 * lcapacity(1) * 0.3 * transfer(land, i) * dA(lat(i), 10) * 100
-            atransfer = 1 * lcapacity(1) * 1 * transfer(air, i) * dA(lat(i), 5000) * 100
+            ltransfer = 1000 * lcapacity(1) * 0.3 * transfer(land, i) * dA(lat(i), 7) * 10
+            atransfer = 1 * lcapacity(1) * 1 * transfer(air, i) * dA(lat(i), 4000) * 10
 
-            lradius = linput - loutput + ltransfer
-            aradius = ainput - aoutput + atransfer
+            lradius = (linput - loutput + ltransfer) * rand()
+            aradius = (ainput - aoutput + atransfer) * rand()
 
-            nland[i] = land[i] + lradius / lcapacity(land[i]) / dV(10) / 1000 * period
-            nair[i] = air[i] + aradius / acapacity(air[i]) / dV(5000) / 1 * period
+            nland[i] = land[i] + lradius / lcapacity(land[i]) / dV(7) / 1000 * period
+            nair[i] = air[i] + aradius / acapacity(air[i]) / dV(4000) / 1 * period
         [gland, nland, gair, nair]
 
     avgt
