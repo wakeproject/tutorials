@@ -6,6 +6,6 @@ require({
         qwery: '/javascripts/qwery',
         bonzo: '/javascripts/bonzo',
         bean: '/javascripts/bean',
-        baseUrl: '/tutorials/mechanics/001-binary-stars/'
+        baseUrl: '/tutorials/atmospheric/001-balanced-temperature/'
     }
 }, ['cs!csmain']);

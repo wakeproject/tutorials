@@ -4,6 +4,6 @@ require({
     paths: {
         cs: '/javascripts/cs',
         underscore: '/javascripts/underscore',
-        baseUrl: '/tutorials/mechanics/003-twilight-zone/'
+        baseUrl: '/tutorials/atmospheric/001-balanced-temperature/'
     }
 }, ['cs!simulator']);
