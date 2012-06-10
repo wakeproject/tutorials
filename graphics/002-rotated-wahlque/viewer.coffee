@@ -40,11 +40,11 @@ define [
                 lng = 2 * Math.PI * col / num
                 lat = Math.PI * (0.5 - row / num)
                 [x, y] = positioning(lng, lat)
+                if x != -1 && y != -1
+                    pos = row * num + row + col
+                    height = heights[pos] / 64
 
-                pos = row * num + row + col
-                height = heights[pos] / 64
-
-                context.fillStyle = color(height)
-                context.fillRect(Math.floor(512 * x), Math.floor(512 * y), 1, 1)
+                    context.fillStyle = color(height)
+                    context.fillRect(Math.floor(256 + 256 * x), Math.floor(256 + 256 * y), 1, 1)
 
     viewer
