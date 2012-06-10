@@ -54,7 +54,7 @@ define [
         evolve = ->
             return if map == null
             viewer.paint(transformer.target(frame, time), map)
-            time += (1 / 20 / 30)
-        handle = setInterval(evolve, 50)
+            time += (1 / 30)
+        handle = setInterval(evolve, 1000)
 
        true

@@ -45,6 +45,6 @@ define [
                     height = heights[pos] / 64
 
                     context.fillStyle = color(height)
-                    context.fillRect(Math.floor(256 + 256 * x), Math.floor(256 + 256 * y), 1, 1)
+                    context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 2, 2)
 
     viewer
