@@ -45,8 +45,8 @@ define [
             else
               x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
               y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
-            x -= canvas.attr('offsetLeft')
-            y -= canvas.attr('offsetTop')
+            x -= canvas.offsetLeft
+            y -= canvas.offsetTop
             x = x - width / 2
             y = y - height / 2
 
