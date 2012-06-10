@@ -33,21 +33,38 @@ define [
             $("#msg").html('Initializting the terrain data')
             true
 
-        keypressed = (e) ->
-            if e.keyIdentifier == 'Up'
-                frame = rotater.up(frame)
-            else if e.keyIdentifier == 'Down'
-                frame = rotater.down(frame)
-            else if e.keyIdentifier == 'Left'
-                frame = rotater.left(frame)
-            else if e.keyIdentifier == 'Right'
-                frame = rotater.right(frame)
+        changeframe = (e) ->
+            canvas = $('#canvas').get(0)
+            width = canvas.width
+            height = canvas.height
+
+            x = y = 0
+            if e.pageX || e.pageY
+              x = e.pageX
+              y = e.pageY
+            else
+              x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+              y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+            x -= canvas.attr('offsetLeft')
+            y -= canvas.attr('offsetTop')
+            x = x - width / 2
+            y = y - height / 2
+
+            if x > 0
+                frame = rotater.up(frame, x / width * 2)
+            else
+                frame = rotater.down(frame, - x / width * 2)
+
+            if y > 0
+                frame = rotater.left(frame, y / height * 2)
+            else
+                frame = rotater.right(frame, - y / height * 2)
 
         bean.add(
             $('#btnStart').get(0), 'click', (-> invoke())
         )
         bean.add(
-            $('#main').get(0), 'keypress', keypressed
+            $('#canvas').get(0), 'click', changeframe
         )
 
         time = 0

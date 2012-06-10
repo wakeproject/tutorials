@@ -8,9 +8,9 @@ define [
   'cs!/wahlque/math/geometry/vector3'
 ], (rotater, vec3) ->
 
-    rotater.up = (frame) ->
+    rotater.up = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = 2 * Math.PI * time / 30
+        phi = Math.PI / 6 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -18,9 +18,9 @@ define [
         axisy = vec3.cross(axisx, rotated)
         [axisx, axisy, rotated]
 
-    rotater.down = (axisx, axisy) ->
+    rotater.down = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = - 2 * Math.PI * time / 30
+        phi = - Math.PI / 6 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -28,9 +28,9 @@ define [
         axisy = vec3.cross(axisx, rotated)
         [axisx, axisy, rotated]
 
-    rotater.left = (frame) ->
+    rotater.left = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = - 2 * Math.PI * time / 30
+        phi = Math.PI / 6 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -38,9 +38,9 @@ define [
         axisx = vec3.cross(axisy, rotated)
         [axisx, axisy, rotated]
 
-    rotater.right = (frame) ->
+    rotater.right = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = 2 * Math.PI * time / 30
+        phi = - Math.PI / 6 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
