@@ -51,14 +51,14 @@ define [
             y = y - height / 2
 
             if x > 0
-                frame = rotater.left(frame, y / height * 2)
+                frame = rotater.left(frame, x / width * 2)
             else
-                frame = rotater.right(frame, - y / height * 2)
+                frame = rotater.right(frame, - x / width * 2)
 
             if y > 0
-                frame = rotater.up(frame, x / width * 2)
+                frame = rotater.up(frame, y / height * 2)
             else
-                frame = rotater.down(frame, - x / width * 2)
+                frame = rotater.down(frame, - y / height * 2)
 
         bean.add(
             $('#btnStart').get(0), 'click', (-> invoke())
