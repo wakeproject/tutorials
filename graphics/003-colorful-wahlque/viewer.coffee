@@ -44,7 +44,7 @@ define [
                 lng = 2 * Math.PI * col / num
                 lat = Math.PI * (0.5 - row / num)
                 [position, factor] = params(lng, lat)
-                [x, y] = postion
+                [x, y] = position
                 if x != -1 && y != -1
                     pos = row * num + row + col
                     height = heights[pos] / 64
