@@ -12,8 +12,11 @@ define [
   'bean'
   'cs!rotater'
   'cs!transformer'
+  'cs!starlight'
   'cs!viewer'
-], (_, domReady, qwery, bonzo, bean, rotater, transformer, viewer) ->
+  'cs!/wahlque/physics/units/au'
+  'cs!/wahlque/universe/wahlque/planet/planet'
+], (_, domReady, qwery, bonzo, bean, rotater, transformer, starlight, viewer, au, planet) ->
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
@@ -70,8 +73,10 @@ define [
         time = 0
         evolve = ->
             return if map == null
-            viewer.paint(transformer.target(frame, time), map)
-            time += (1 / 30)
+            tao = planet.period / 30 #SI
+            lights = starlight.evolve(au.fromSI_T(tao))
+            viewer.paint(transformer.target(frame, lights, (time / planet.period)), map)
+            time += tao
         handle = setInterval(evolve, 1000)
 
        true
