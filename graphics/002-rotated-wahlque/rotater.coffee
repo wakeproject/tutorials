@@ -10,7 +10,7 @@ define [
 
     rotater.up = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = Math.PI / 6 * step
+        phi = Math.PI / 24 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -20,7 +20,7 @@ define [
 
     rotater.down = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = - Math.PI / 6 * step
+        phi = - Math.PI / 24 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -30,7 +30,7 @@ define [
 
     rotater.left = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = Math.PI / 6 * step
+        phi = Math.PI / 24 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
@@ -40,7 +40,7 @@ define [
 
     rotater.right = (frame, step) ->
         [axisx, axisy, axisz] = frame
-        phi = - Math.PI / 6 * step
+        phi = - Math.PI / 24 * step
         cos = Math.cos(phi)
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
