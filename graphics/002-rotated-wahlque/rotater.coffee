@@ -35,7 +35,7 @@ define [
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
         rotated = vec3.add(vec3.expand(axisz, cos), vec3.expand(vec3.cross(axisy, axisz), sin))
-        axisx = vec3.cross(rotated, axisy)
+        axisx = vec3.cross(axisy, rotated)
         [axisx, axisy, rotated]
 
     rotater.right = (frame, step) ->
@@ -45,7 +45,7 @@ define [
         sin = Math.sin(phi)
         # by Rodrigues' rotation formula
         rotated = vec3.add(vec3.expand(axisz, cos), vec3.expand(vec3.cross(axisy, axisz), sin))
-        axisx = vec3.cross(rotated, axisy)
+        axisx = vec3.cross(axisy, rotated)
         [axisx, axisy, rotated]
 
     rotater
