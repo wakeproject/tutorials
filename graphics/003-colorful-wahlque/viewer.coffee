@@ -23,6 +23,8 @@ define [
         g = Math.floor((r + b) / 1.5)
         g = 255 if g > 255
 
+        factor = Math.sqrt(factor)
+        factor = Math.sqrt(factor)
         r = Math.floor(r * factor)
         g = Math.floor(g * factor)
         b = Math.floor(b * factor)
