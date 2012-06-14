@@ -7,9 +7,10 @@ define [
   'exports'
   'cs!/wahlque/physics/units/si'
   'cs!/wahlque/physics/units/wau'
+  'cs!/wahlque/math/geometry/vector3'
   'cs!/wahlque/universe/wahlque/planet/planet'
   'cs!/wahlque/universe/wahlque/planet/radiation'
-], (exports, si, wau, p, r) ->
+], (exports, si, wau, vec3, p, r) ->
 
     sc = si.solarConst
     radius = p.radius
