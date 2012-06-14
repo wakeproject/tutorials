@@ -1,0 +1,28 @@
+body {
+    background-color: white;
+    color: black;
+    margin: 10px;
+}
+
+#canvas {
+    position: absolute;
+    top: 80px;
+    left: 10px;
+    width: 512px;
+    height: 512px;
+    background-color: black;
+}
+
+#btnStart {
+    position: absolute;
+    top: 80px;
+    left: 612px;
+}
+
+#msg {
+    position: absolute;
+    top: 120px;
+    left: 612px;
+}
+
+
