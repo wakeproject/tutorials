@@ -4,16 +4,17 @@
   view for generation
 ###
 define [
-  'underscore',
+  'cs!/wahlque/physics/units/si'
   'exports'
-], (_, viewer) ->
+], (si, viewer) ->
 
     canvas = document.getElementById("canvas")
     context = canvas.getContext("2d")
     canvas.width = 512
     canvas.height = 512
+    sc = si.solarConst
 
-    color = (height) ->
+    colorGeo = (height) ->
         r = 128
         b = 192
         r = Math.floor(height / 48) if height > 8192
@@ -32,8 +33,21 @@ define [
 
         "#" + hexR + hexG + hexB
 
-    viewer.paint = (positioning, geodata, heatdata) ->
-        context.clearRect(0, 0, 512, 512)
+    colorHeat = (idx) ->
+        r = 256 / 32 * idx
+        b = 0
+        g = 0
+
+        hexR = Math.round(r).toString(16)
+        hexR = '0' + hexR if hexR.length == 1
+        hexB = Math.round(b).toString(16)
+        hexB = '0' + hexB if hexB.length == 1
+        hexG = Math.round(g).toString(16)
+        hexG = '0' + hexG if hexG.length == 1
+
+        "#" + hexR + hexG + hexB
+
+    azimuthal = (positioning, geodata) ->
         [num, len, heights] = geodata
         for row in [0...num]
             for col in [0...num]
@@ -44,7 +58,39 @@ define [
                     pos = row * num + row + col
                     height = heights[pos] / 64
 
-                    context.fillStyle = color(height)
+                    context.fillStyle = colorGeo(height)
                     context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 5, 5)
+
+    lng = (col) -> 2 * Math.PI * col / 256
+    lat = (row) -> Math.PI * (0.5 - row / 256)
+    find = (array, value) ->
+        points = []
+        idx = 0
+        while (idx < 255)
+            d1 = array[idx] - value
+            d2 = array[idx + 1] - value
+            if d1 * d2 <= 0
+                if Math.abs(d1) < Math.abs(d2)
+                    point = idx
+                else
+                    point = idx + 1
+                points.push(point)
+            idx ++
+        points
+    contour = (positioning, heatdata) ->
+        for idx in [0...32]
+            value = 2 * sc / 32 * idx
+            for row in [0...256]
+                points = find(heatdata[row], value)
+                for col in points
+                    [x, y] = positioning(lng(col), lat(row))
+                    if x != -1 && y != -1
+                        context.fillStyle = colorHeat(idx)
+                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 5, 5)
+
+    viewer.paint = (positioning, geodata, heatdata) ->
+        context.clearRect(0, 0, 512, 512)
+        azimuthal(positioning, geodata)
+        contour(positioning, heatdata)
 
     viewer

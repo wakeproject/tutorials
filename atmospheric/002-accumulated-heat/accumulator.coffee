@@ -43,7 +43,7 @@ define [
         lday = time / p.period
         for i in [0..256]
             for j in [0..256]
-                energyIn = sc * input(lng(i), lat(j), time, light1, light2) * dS * tao
+                energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[i][j] = data[i][j] + energyIn
         avg = []
         for i in [0..256]
