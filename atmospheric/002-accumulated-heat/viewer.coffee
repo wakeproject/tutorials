@@ -75,7 +75,7 @@ define [
                 else
                     point = idx + 1
                 points.push(point)
-            idx ++
+            idx++
         points
     contour = (positioning, heatdata) ->
         for idx in [0...32]
