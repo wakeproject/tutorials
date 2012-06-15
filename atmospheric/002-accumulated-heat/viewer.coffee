@@ -78,7 +78,7 @@ define [
             idx++
         points
     contour = (positioning, heatdata) ->
-        for idx in [0...32]
+        for idx in [1...32]
             value = 2 * sc / 32 * idx
             for row in [0...256]
                 points = find(heatdata[row], value)
@@ -86,7 +86,7 @@ define [
                     [x, y] = positioning(lng(col), lat(row))
                     if x != -1 && y != -1
                         context.fillStyle = colorHeat(idx)
-                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 5, 5)
+                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 1, 1)
 
     viewer.paint = (positioning, geodata, heatdata) ->
         context.clearRect(0, 0, 512, 512)
