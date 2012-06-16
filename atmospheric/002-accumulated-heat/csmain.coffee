@@ -36,18 +36,51 @@ define [
             $("#msg").html('Initializting the terrain data')
             true
 
+        changeframe = (e) ->
+            canvas = $('#canvas').get(0)
+            width = canvas.width
+            height = canvas.height
+
+            x = y = 0
+            if e.pageX || e.pageY
+              x = e.pageX
+              y = e.pageY
+            else
+              x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+              y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+            x -= canvas.offsetLeft
+            y -= canvas.offsetTop
+            x = x - width / 2
+            y = y - height / 2
+
+            if x > 0
+                frame = rotater.left(frame, - x / width * 2)
+            else
+                frame = rotater.right(frame, x / width * 2)
+
+            if y > 0
+                frame = rotater.up(frame, y / height * 2)
+            else
+                frame = rotater.down(frame, - y / height * 2)
+
         bean.add(
             $('#btnStart').get(0), 'click', (-> invoke())
         )
+        bean.add(
+            $('#canvas').get(0), 'click', changeframe
+        )
 
         time = 0
+        counter = 0
         evolve = ->
             return if map == null
             tao = planet.period / 30 #SI
             lights = starlight.evolve(au.fromSI_T(tao))
             data = accumulator.accumulate(tao, time, lights[0], lights[1])
 
-            viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
+            if counter == 0
+                viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
+            counter = (counter + 1) % 30
             time += tao
         handle = setInterval(evolve, 1000)
 
