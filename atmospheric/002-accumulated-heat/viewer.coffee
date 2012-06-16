@@ -34,7 +34,7 @@ define [
         "#" + hexR + hexG + hexB
 
     colorHeat = (idx) ->
-        r = 256 / 32 * idx
+        r = 256 / 256 * idx
         b = 0
         g = 0
 
@@ -78,8 +78,8 @@ define [
             idx++
         points
     contour = (positioning, heatdata) ->
-        for idx in [1...32]
-            value = 2 * sc / 32 * idx
+        for idx in [1...256]
+            value = 2 * sc / 256 * idx
             for row in [0...256]
                 points = find(heatdata[row], value)
                 for col in points
