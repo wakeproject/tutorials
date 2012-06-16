@@ -81,7 +81,7 @@ define [
         for idx in [1...256]
             value = sc / 256 * idx
             for col in [0...256]
-                points = find(heatdata[row], value)
+                points = find(heatdata[col], value)
                 for row in points
                     [x, y] = positioning(lng(col), lat(row))
                     if x != -1 && y != -1
