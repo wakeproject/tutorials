@@ -80,9 +80,9 @@ define [
     contour = (positioning, heatdata) ->
         for idx in [1...256]
             value = sc / 256 * idx
-            for row in [0...256]
+            for col in [0...256]
                 points = find(heatdata[row], value)
-                for col in points
+                for row in points
                     [x, y] = positioning(lng(col), lat(row))
                     if x != -1 && y != -1
                         context.fillStyle = colorHeat(idx)
