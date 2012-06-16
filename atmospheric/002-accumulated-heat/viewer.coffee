@@ -79,7 +79,7 @@ define [
         points
     contour = (positioning, heatdata) ->
         for idx in [1...256]
-            value = 2 * sc / 256 * idx
+            value = sc / 256 * idx
             for row in [0...256]
                 points = find(heatdata[row], value)
                 for col in points
