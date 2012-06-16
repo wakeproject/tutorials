@@ -78,10 +78,11 @@ define [
             idx++
         points
     contour = (positioning, heatdata) ->
-        for idx in [1...256]
-            value = sc / 256 * idx
-            for col in [0...256]
-                points = find(heatdata[col], value)
+        for col in [0...256]
+            column = heatdata[col]
+            for idx in [1...256]
+                value = sc / 256 * idx
+                points = find(column, value)
                 for row in points
                     [x, y] = positioning(lng(col), lat(row))
                     if x != -1 && y != -1
