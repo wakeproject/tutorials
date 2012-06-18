@@ -83,7 +83,7 @@ define [
         for col in [0...num]
             cur = num * col
             for idx in [0...num]
-                value = 2 * sc / num * idx
+                value = sc / 8 / num * idx
                 points = find(heats, cur, cur + num - 1, value)
                 for row in points
                     [x, y] = positioning(lng(col), lat(row))
