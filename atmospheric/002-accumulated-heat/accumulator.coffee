@@ -35,7 +35,6 @@ define [
     for i in [0..128]
         for j in [0..128]
             avg.push 0
-    struct = [128, 128 * 128, avg]
 
     input = (lng, lat, time, light1, light2) ->
         ltime = wau.fromAU_T(time)
@@ -53,7 +52,7 @@ define [
                 data[cur] = data[cur] + energyIn
                 avg[cur] = data[cur] / lday
 
-        struct
+        [128, 128 * 128, avg]
 
     exports
 
