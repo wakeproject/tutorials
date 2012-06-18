@@ -49,7 +49,9 @@ define [
                 data[i][j] = data[i][j] + energyIn
         avg = []
         for i in [0..256]
-            arr = (data[i][j] / lday for j in [0..256])
+            arr = []
+            for j in [0..256]
+                arr[j] = data[i][j] / lday
             avg.push arr
 
         avg
