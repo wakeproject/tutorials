@@ -80,13 +80,15 @@ define [
             return if map == null
             tao = planet.period / 30 #SI
             lights = starlight.evolve(au.fromSI_T(tao))
-            data = accumulator.accumulate(tao, time, lights[0], lights[1])
+            heats = accumulator.accumulate(tao, time, lights[0], lights[1])
 
-            viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
-            counter = (counter + 1) % 30
+            viewer.paint(transformer.target(frame, (time / planet.period)), map, heats)
 
+            avg = accumulator.avg
+            data = accumulator.data
             $("#msg").html('<ul>' + li(data, avg, 16) + li(data, avg, 48) + li(data, avg, 80) + li(data, avg, 112) + '</ul>')
             time += tao
+            counter = (counter + 1) % 30
         handle = setInterval(evolve, 3333)
 
        true
