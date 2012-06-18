@@ -84,6 +84,6 @@ define [
             counter = (counter + 1) % 30
             $("#msg").html('data: ' + accumulator.data[97] + '\navg: ' + accumulator.avg[97])
             time += tao
-        handle = setInterval(evolve, 10000)
+        handle = setInterval(evolve, 3333)
 
        true
