@@ -29,7 +29,9 @@ define [
     totalB = 0
     data = []
     for i in [0..256]
-        arr = (0 for j in [0..256])
+        arr = []
+        for j in [0..256]
+            arr.push 0
         data.push arr
 
     input = (lng, lat, time, light1, light2) ->
