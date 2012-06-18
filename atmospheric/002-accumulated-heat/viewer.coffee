@@ -59,7 +59,7 @@ define [
                     height = heights[pos] / 64
 
                     context.fillStyle = colorGeo(height)
-                    context.fillRect(Math.floor(128 + 250 * x), Math.floor(128 + 250 * y), 5, 5)
+                    context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 5, 5)
 
     lng = (col) -> 2 * Math.PI * col / 128
     lat = (row) -> Math.PI * (0.5 - row / 128)
