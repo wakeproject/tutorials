@@ -20,7 +20,6 @@ define [
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
-        tmp = null
         map = null
         frame = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
@@ -29,9 +28,8 @@ define [
             data = event.data
             if data.msg
                 $("#msg").html(data.msg)
-                map = tmp
             else if data.trn
-                tmp = data.trn
+                map = data.trn
 
         invoke = ->
             worker.postMessage('start')
@@ -86,7 +84,7 @@ define [
 
             avg = accumulator.avg
             data = accumulator.data
-            $("#msg").html('<ul>' + li(data, avg, 16) + li(data, avg, 48) + li(data, avg, 80) + li(data, avg, 112) + '</ul>')
+            $("#msg").html('<ul>' + li(data, avg, 16 * 128) + li(data, avg, 48 * 128) + li(data, avg, 80 * 128) + li(data, avg, 112 * 128) + '</ul>')
             time += tao
             counter = (counter + 1) % 30
         handle = setInterval(evolve, 3333)
