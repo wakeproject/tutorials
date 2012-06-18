@@ -53,9 +53,7 @@ define [
             for j in [0..256]
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[i][j] = data[i][j] + energyIn
-        for i in [0..256]
-            for j in [0..256]
-                arr[j] = data[i][j] / lday
+                avg[i][j] = data[i][j] / lday
 
         avg
 
