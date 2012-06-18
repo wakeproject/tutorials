@@ -82,6 +82,6 @@ define [
                 viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
             counter = (counter + 1) % 30
             time += tao
-        handle = setInterval(evolve, 33)
+        handle = setInterval(evolve, 1000)
 
        true
