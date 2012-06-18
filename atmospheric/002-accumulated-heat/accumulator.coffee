@@ -44,13 +44,12 @@ define [
         in1 + in2
 
     exports.accumulate = (tao, time, light1, light2) ->
-        lday = time / p.period
         for i in [0..128]
             for j in [0..128]
                 cur = 128 * i + j
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[cur] = data[cur] + energyIn
-                avg[cur] = data[cur] / lday
+                avg[cur] = data[cur] / (time + 0.01)
 
         [128, 128 * 128, avg]
     exports.data = data
