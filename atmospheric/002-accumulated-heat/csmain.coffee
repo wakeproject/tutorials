@@ -13,10 +13,11 @@ define [
   'cs!accumulator'
   'cs!transformer'
   'cs!starlight'
+  'cs!rotater'
   'cs!viewer'
   'cs!/wahlque/physics/units/au'
   'cs!/wahlque/universe/wahlque/planet/planet'
-], (_, domReady, qwery, bonzo, bean, accumulator, transformer, starlight, viewer, au, planet) ->
+], (_, domReady, qwery, bonzo, bean, accumulator, transformer, starlight, rotater, viewer, au, planet) ->
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
