@@ -34,7 +34,7 @@ define [
         "#" + hexR + hexG + hexB
 
     colorHeat = (idx) ->
-        r = 128 / 128 * idx
+        r = 128 + idx
         b = 0
         g = 0
 
@@ -54,7 +54,7 @@ define [
                 lng = 2 * Math.PI * col / num
                 lat = Math.PI * (0.5 - row / num)
                 [x, y] = positioning(lng, lat)
-                if x != -1 && y != -1
+                if x != -1 or y != -1
                     pos = row * num + row + col
                     height = heights[pos] / 64
 
@@ -86,9 +86,9 @@ define [
                 points = find(heatdata, cur, cur + num - 1, value)
                 for col in points
                     [x, y] = positioning(lng(col), lat(row))
-                    if x != -1 && y != -1
+                    if x != -1 or y != -1
                         context.fillStyle = colorHeat(idx)
-                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 4, 4)
+                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 1, 1)
 
     viewer.paint = (positioning, geodata, heatdata) ->
         context.clearRect(0, 0, 512, 512)
