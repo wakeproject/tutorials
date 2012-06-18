@@ -34,7 +34,7 @@ define [
         "#" + hexR + hexG + hexB
 
     colorHeat = (idx) ->
-        r = 256 / 256 * idx
+        r = 128 / 128 * idx
         b = 0
         g = 0
 
@@ -59,35 +59,36 @@ define [
                     height = heights[pos] / 64
 
                     context.fillStyle = colorGeo(height)
-                    context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 5, 5)
+                    context.fillRect(Math.floor(128 + 250 * x), Math.floor(128 + 250 * y), 5, 5)
 
-    lng = (col) -> 2 * Math.PI * col / 256
-    lat = (row) -> Math.PI * (0.5 - row / 256)
-    find = (array, value) ->
+    lng = (col) -> 2 * Math.PI * col / 128
+    lat = (row) -> Math.PI * (0.5 - row / 128)
+    find = (array, src, trgt, value) ->
         points = []
-        idx = 0
-        while (idx < 255)
+        idx = src
+        while (idx < trgt)
             d1 = array[idx] - value
             d2 = array[idx + 1] - value
             if d1 * d2 <= 0
                 if Math.abs(d1) < Math.abs(d2)
-                    point = idx
+                    point = idx - src
                 else
-                    point = idx + 1
+                    point = idx + 1 - src
                 points.push(point)
             idx++
         points
     contour = (positioning, heatdata) ->
-        for col in [0...256]
-            for idx in [1...256]
-                value = sc / 256 * idx
-                for col in [0...256]
-                    for row in [0...255]
-                        [x, y] = positioning(lng(col), lat(row))
-                        points = find([heatdata[col][row], heatdata[col][row+1]], value)
-                        if x != -1 && y != -1
-                            context.fillStyle = colorHeat(idx)
-                            context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 1, 1)
+        [num, len, heats] = heatdata
+        for row in [0...num]
+            cur = num * row
+            for idx in [1...num]
+                value = sc / num * idx
+                points = find(heatdata, cur, cur + num - 1, value)
+                for col in points
+                    [x, y] = positioning(lng(col), lat(row))
+                    if x != -1 && y != -1
+                        context.fillStyle = colorHeat(idx)
+                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 4, 4)
 
     viewer.paint = (positioning, geodata, heatdata) ->
         context.clearRect(0, 0, 512, 512)

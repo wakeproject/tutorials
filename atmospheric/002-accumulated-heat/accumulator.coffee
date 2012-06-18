@@ -14,9 +14,9 @@ define [
 
     sc = si.solarConst
     radius = p.radius
-    lng = (i) -> 2 * Math.PI / 256 * i
-    lat = (j) -> Math.asin((256 - 2 * j + 1) / 256)
-    dS = 2 * Math.PI * radius * 2 * radius / 256 / 256
+    lng = (i) -> 2 * Math.PI / 128 * i
+    lat = (j) -> Math.asin((128 - 2 * j + 1) / 128)
+    dS = 2 * Math.PI * radius * 2 * radius / 128 / 128
 
     cut = (val) ->
         if val > 0
@@ -28,17 +28,14 @@ define [
     totalA = 0
     totalB = 0
     data = []
-    for i in [0..256]
-        arr = []
-        for j in [0..256]
-            arr.push 0
-        data.push arr
+    for i in [0..128]
+        for j in [0..128]
+            data.push 0
     avg = []
-    for i in [0..256]
-        arr = []
-        for j in [0..256]
-            arr.push 0
-        avg.push arr
+    for i in [0..128]
+        for j in [0..128]
+            avg.push 0
+    struct = [128, 128 * 128, avg]
 
     input = (lng, lat, time, light1, light2) ->
         ltime = wau.fromAU_T(time)
@@ -49,13 +46,14 @@ define [
 
     exports.accumulate = (tao, time, light1, light2) ->
         lday = time / p.period
-        for i in [0..256]
-            for j in [0..256]
+        for i in [0..128]
+            for j in [0..128]
+                cur = 128 * i + j
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
-                data[i][j] = data[i][j] + energyIn
-                avg[i][j] = data[i][j] / lday
+                data[cur] = data[cur] + energyIn
+                avg[cur] = data[cur] / lday
 
-        avg
+        struct
 
     exports
 
