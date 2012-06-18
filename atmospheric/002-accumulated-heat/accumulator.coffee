@@ -24,9 +24,6 @@ define [
         else
             0
 
-    total = 0
-    totalA = 0
-    totalB = 0
     data = []
     for i in [0..128]
         for j in [0..128]
@@ -43,6 +40,8 @@ define [
         in2 = cut(vec3.inner(zenith, light2))
         in1 + in2
 
+    exports.avg = avg
+    exports.data = data
     exports.accumulate = (tao, time, light1, light2) ->
         for i in [0..128]
             for j in [0..128]
@@ -52,8 +51,6 @@ define [
                 avg[cur] = data[cur] / (time + 0.01)
 
         [128, 128 * 128, avg]
-    exports.data = data
-    exports.avg = avg
 
 
     exports
