@@ -20,6 +20,7 @@ define [
     $ = (selector) -> bonzo(qwery(selector))
 
     domReady ->
+        tmp = null
         map = null
         frame = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
@@ -28,8 +29,9 @@ define [
             data = event.data
             if data.msg
                 $("#msg").html(data.msg)
+                map = tmp
             else if data.trn
-                map = data.trn
+                tmp = data.trn
 
         invoke = ->
             worker.postMessage('start')
