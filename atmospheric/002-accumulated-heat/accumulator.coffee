@@ -33,6 +33,12 @@ define [
         for j in [0..256]
             arr.push 0
         data.push arr
+    avg = []
+    for i in [0..256]
+        arr = []
+        for j in [0..256]
+            arr.push 0
+        avg.push arr
 
     input = (lng, lat, time, light1, light2) ->
         ltime = wau.fromAU_T(time)
@@ -47,12 +53,9 @@ define [
             for j in [0..256]
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[i][j] = data[i][j] + energyIn
-        avg = []
         for i in [0..256]
-            arr = []
             for j in [0..256]
                 arr[j] = data[i][j] / lday
-            avg.push arr
 
         avg
 
