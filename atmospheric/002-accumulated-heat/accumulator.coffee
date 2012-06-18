@@ -34,7 +34,7 @@ define [
             avg.push 0
 
     input = (lng, lat, time, light1, light2) ->
-        ltime = wau.fromAU_T(time)
+        ltime = time / p.period
         zenith = p.zenith(lng, lat, ltime)
         in1 = cut(vec3.inner(zenith, light1))
         in2 = cut(vec3.inner(zenith, light2))
@@ -48,7 +48,7 @@ define [
                 cur = 128 * i + j
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[cur] = data[cur] + energyIn
-                avg[cur] = data[cur] / (time + 0.01)
+                avg[cur] = data[cur] / time
 
         [128, 128 * 128, avg]
 
