@@ -25,12 +25,12 @@ define [
             0
 
     data = []
-    for i in [0..128]
-        for j in [0..128]
+    for i in [0...128]
+        for j in [0...128]
             data.push 0
     avg = []
-    for i in [0..128]
-        for j in [0..128]
+    for i in [0...128]
+        for j in [0...128]
             avg.push 0
 
     input = (lng, lat, time, light1, light2) ->
@@ -43,8 +43,8 @@ define [
     exports.avg = avg
     exports.data = data
     exports.accumulate = (tao, time, light1, light2) ->
-        for i in [0..128]
-            for j in [0..128]
+        for i in [0...128]
+            for j in [0...128]
                 cur = 128 * i + j
                 energyIn = sc * input(lng(i), lat(j), time, light1, light2) * tao
                 data[cur] = data[cur] + energyIn
