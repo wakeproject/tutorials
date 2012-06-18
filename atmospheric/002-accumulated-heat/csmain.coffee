@@ -72,6 +72,8 @@ define [
             $('#canvas').get(0), 'click', changeframe
         )
 
+        li = (data, avg, i) -> '<li>data: ' + data[i] + ' avg: ' + avg[i] + '</li>'
+
         time = 0
         counter = 0
         evolve = ->
@@ -82,7 +84,8 @@ define [
 
             viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
             counter = (counter + 1) % 30
-            $("#msg").html('data: ' + accumulator.data[97] + '\navg: ' + accumulator.avg[97])
+
+            $("#msg").html('<ul>' + li(data, avg, 16) + li(data, avg, 48) + li(data, avg, 80) + li(data, avg, 112) + '</ul>')
             time += tao
         handle = setInterval(evolve, 3333)
 
