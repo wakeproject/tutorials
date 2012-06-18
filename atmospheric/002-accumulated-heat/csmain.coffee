@@ -82,7 +82,7 @@ define [
 
             viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
             counter = (counter + 1) % 30
-            $("#msg").html('counter: ' + counter)
+            $("#msg").html('data: ' + accumulator.data[97] + '\navg: ' + accumulator.avg[97])
             time += tao
         handle = setInterval(evolve, 10000)
 
