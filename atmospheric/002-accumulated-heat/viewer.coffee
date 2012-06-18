@@ -83,7 +83,7 @@ define [
             cur = num * col
             for idx in [1...num]
                 value = sc / 10.0 / num * idx
-                points = find(heatdata, cur, cur + num - 1, value)
+                points = find(heats, cur, cur + num - 1, value)
                 for row in points
                     [x, y] = positioning(lng(col), lat(row))
                     if x != -1 or y != -1
