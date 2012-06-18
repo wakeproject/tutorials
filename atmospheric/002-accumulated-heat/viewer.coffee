@@ -79,15 +79,15 @@ define [
         points
     contour = (positioning, heatdata) ->
         for col in [0...256]
-            column = heatdata[col]
             for idx in [1...256]
                 value = sc / 256 * idx
-                points = find(column, value)
-                for row in points
-                    [x, y] = positioning(lng(col), lat(row))
-                    if x != -1 && y != -1
-                        context.fillStyle = colorHeat(idx)
-                        context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 1, 1)
+                for col in [0...256]
+                    for row in [0...255]
+                        [x, y] = positioning(lng(col), lat(row))
+                        points = find([heatdata[col][row], heatdata[col][row+1]], value)
+                        if x != -1 && y != -1
+                            context.fillStyle = colorHeat(idx)
+                            context.fillRect(Math.floor(256 + 250 * x), Math.floor(256 + 250 * y), 1, 1)
 
     viewer.paint = (positioning, geodata, heatdata) ->
         context.clearRect(0, 0, 512, 512)
