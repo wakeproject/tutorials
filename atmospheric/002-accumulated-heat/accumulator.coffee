@@ -53,6 +53,9 @@ define [
                 avg[cur] = data[cur] / lday
 
         [128, 128 * 128, avg]
+    exports.data = data
+    exports.avg = avg
+
 
     exports
 
