@@ -34,7 +34,8 @@ define [
         "#" + hexR + hexG + hexB
 
     colorHeat = (idx) ->
-        r = 128 + idx
+        r = 2 * idx
+        r = 255 if r > 255
         b = 0
         g = 0
 
