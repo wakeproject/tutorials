@@ -78,10 +78,9 @@ define [
             lights = starlight.evolve(au.fromSI_T(tao))
             data = accumulator.accumulate(tao, time, lights[0], lights[1])
 
-            if counter == 0
-                viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
+            viewer.paint(transformer.target(frame, (time / planet.period)), map, data)
             counter = (counter + 1) % 30
             time += tao
-        handle = setInterval(evolve, 1000)
+        handle = setInterval(evolve, 10000)
 
        true
